@@ -1,0 +1,10 @@
+module snake(
+	output [7:0] data_r, data_g, data_b,
+	output [3:0] comm,
+	input clk);
+	
+	assign data_r = 8'b01111111;
+	assign data_g = 8'b10111111;
+	assign data_b = 8'b11011111;
+	assign comm = 4'b1000;
+endmodule

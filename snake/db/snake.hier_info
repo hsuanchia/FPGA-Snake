@@ -1,0 +1,62 @@
+|snake
+data_r[0] <= <VCC>
+data_r[1] <= <VCC>
+data_r[2] <= <VCC>
+data_r[3] <= <VCC>
+data_r[4] <= <VCC>
+data_r[5] <= <VCC>
+data_r[6] <= <VCC>
+data_r[7] <= <GND>
+data_g[0] <= <VCC>
+data_g[1] <= <VCC>
+data_g[2] <= <VCC>
+data_g[3] <= <VCC>
+data_g[4] <= <VCC>
+data_g[5] <= <VCC>
+data_g[6] <= <GND>
+data_g[7] <= <VCC>
+data_b[0] <= <VCC>
+data_b[1] <= <VCC>
+data_b[2] <= <VCC>
+data_b[3] <= <VCC>
+data_b[4] <= <VCC>
+data_b[5] <= <GND>
+data_b[6] <= <VCC>
+data_b[7] <= <VCC>
+comm[0] <= comm[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+comm[1] <= comm[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+comm[2] <= comm[2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+comm[3] <= comm[3]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+clk => clk.IN1
+
+
+|snake|divfreq:F0
+clk => clk_div~reg0.CLK
+clk => count[0].CLK
+clk => count[1].CLK
+clk => count[2].CLK
+clk => count[3].CLK
+clk => count[4].CLK
+clk => count[5].CLK
+clk => count[6].CLK
+clk => count[7].CLK
+clk => count[8].CLK
+clk => count[9].CLK
+clk => count[10].CLK
+clk => count[11].CLK
+clk => count[12].CLK
+clk => count[13].CLK
+clk => count[14].CLK
+clk => count[15].CLK
+clk => count[16].CLK
+clk => count[17].CLK
+clk => count[18].CLK
+clk => count[19].CLK
+clk => count[20].CLK
+clk => count[21].CLK
+clk => count[22].CLK
+clk => count[23].CLK
+clk => count[24].CLK
+clk_div <= clk_div~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
