@@ -5,19 +5,26 @@ module snake(
 	input clk,clear);
 	
 	reg [7:0] status [7:0];
-	int tmp;
+	integer tmp,i,j,start;
+	integer tmpx,tmpy;
+	integer tailx,taily,cut;
 	reg [1:0] moveway;	
-	reg body;
-	integer snakex [63:0];
-	integer snakey [63:0];
+	byte body;
+	int snakex [63:0];
+	int snakey [63:0];
+	integer index;
+	
 	initial
 		begin
 			body = 3;
-			for(tmp = 0;tmp<body;tmp++)
-				begin
-					snakex[tmp] = tmp;
-					snakey[tmp] = 0;
-				end
+			i=0;
+			j=0;
+			tmpx = 0;
+			tmpy = 0;
+			index = 0;
+			snakex[2] = 2;
+			snakex[1] = 1;
+			snakex[0] = 0;
 			moveway = 2'b11; //left = 00,down = 01,up = 10,right = 11
 			data_r = 8'b11111111;
 			data_g = 8'b11111111;
@@ -63,17 +70,17 @@ module snake(
 
 	always@(posedge clk_mv)
 		begin
-		integer index;
-		integer tmpx;
-		integer tmpy;
 			if(clear == 1)
 				begin
 					body = 3;
-					for(tmp = body-1;tmp>=0;tmp--)
-						begin
-							snakex[tmp] = tmp;
-							snakey[tmp] = 0;
-						end
+					i=0;
+					j=0;
+					tmpx = 0;
+					tmpy = 0;
+					index = 0;
+					snakex[2] = 2;
+					snakex[1] = 1;
+					snakex[0] = 0;
 					moveway = 2'b11; //left = 00,down = 01,up = 10,right = 11
 					status[0] = 8'b01111111;
 					status[1] = 8'b01111111;
@@ -94,70 +101,77 @@ module snake(
 						moveway = 2'b01;
 				else if(direction[2])
 						moveway = 2'b10;
-				else if(moveway == 2'b11)
+						
+				if(i < body) //refresh snake status
+						begin
+							status[snakex[i]][snakey[i]] = 1'b0;
+							i++;
+						end
+						
+				if(moveway == 2'b11 && i >= body)
 					begin
-							for(index = 0;index<=7;index++)
-								status[index] = 8'b11111111;
-							for(index = 0;index < body;index++)
-								status[snakex[index]][snakey[index]] = 1'b0;
-//							tmpx = snakex[body-1];
-//							tmpy = snakey[body-1];
-//							for(index = 0;index < body-1;index++)
-//								begin
-//									snakex[index] = snakex[index+1];
-//									snakey[index] = snakey[index+1];
-//								end
-//							snakex[body-1] = tmpx + 1;
-//							snakey[body-1] = tmpy;
-									
+						tailx = snakex[0];
+						taily = snakey[0];
+						tmpx = snakex[body-1];
+						tmpy = snakey[body-1];
+						if(index < body)
+							begin
+								snakex[index] = snakex[index+1];
+								snakey[index] = snakey[index+1];
+								index++;
+							end
+						snakex[body-1] = tmpx + 1;
+						snakey[body-1] = tmpy;
+						i=0;
 					end
-				else if(moveway == 2'b00)
+
+				else if(moveway == 2'b00 && i >= body)
 					begin
-							for(index = 0;index<=7;index++)
-								status[index] = 8'b11111111;
-							for(index = 0;index < body;index++)
-								status[snakex[index]][snakey[index]] = 1'b0;
-							tmpx = snakex[body-1];
-							tmpy = snakey[body-1];
-							for(index = 0;index < body;index++)
-								begin
-									snakex[index] = snakex[index+1];
-									snakey[index] = snakey[index+1];
-								end
-							snakex[body-1] = tmpx - 1;
-							snakey[body-1] = tmpy;
+						tailx = snakex[0];
+						taily = snakey[0];
+						tmpx = snakex[body-1];
+						tmpy = snakey[body-1];
+						if(index < body)
+							begin
+								snakex[index] = snakex[index+1];
+								snakey[index] = snakey[index+1];
+								index++;
+							end
+						snakex[body-1] = tmpx - 1;
+						snakey[body-1] = tmpy;
+						i=0;
 					end
-				else if(moveway == 2'b01)
+				else if(moveway == 2'b01 && i >= body)
 					begin
-							for(index = 0;index<=7;index++)
-								status[index] = 8'b11111111;
-							for(index = 0;index < body;index++)
-								status[snakex[index]][snakey[index]] = 1'b0;
-							tmpx = snakex[body-1];
-							tmpy = snakey[body-1];
-							for(index = 0;index < body;index++)
-								begin
-									snakex[index] = snakex[index+1];
-									snakey[index] = snakey[index+1];
-								end
-							snakex[body-1] = tmpx;
-							snakey[body-1] = tmpy-1;
+						tailx = snakex[0];
+						taily = snakey[0];
+						tmpx = snakex[body-1];
+						tmpy = snakey[body-1];
+						if(index < body)
+							begin
+								snakex[index] = snakex[index+1];
+								snakey[index] = snakey[index+1];
+								index++;
+							end
+						snakex[body-1] = tmpx;
+						snakey[body-1] = tmpy - 1;
+						i=0;
 					end
-				else if(moveway == 2'b10)
+				else if(moveway == 2'b10 && i >= body)
 					begin
-							for(index = 0;index<=7;index++)
-								status[index] = 8'b11111111;
-							for(index = 0;index < body;index++)
-								status[snakex[index]][snakey[index]] = 1'b0;
-							tmpx = snakex[body-1];
-							tmpy = snakey[body-1];
-							for(index = 0;index < body;index++)
-								begin
-									snakex[index] = snakex[index+1];
-									snakey[index] = snakey[index+1];
-								end
-							snakex[body-1] = tmpx;
-							snakey[body-1] = tmpy + 1;
+						tailx = snakex[0];
+						taily = snakey[0];
+						tmpx = snakex[body-1];
+						tmpy = snakey[body-1];
+						if(index < body)
+							begin
+								snakex[index] = snakex[index+1];
+								snakey[index] = snakey[index+1];
+								index++;
+							end
+						snakex[body-1] = tmpx;
+						snakey[body-1] = tmpy + 1;
+						i=0;
 					end
 //					
 //					begin
