@@ -10,14 +10,14 @@ module snake(
 	integer tailx,taily,cut;
 	reg [1:0] moveway;	
 	byte body;
-	int snakex [64:0];
-	int snakey [64:0];
+	integer snakex [64:0];
+	integer snakey [64:0];
 	integer index;
 	
 	initial
 		begin
 			body = 3;
-			i=0;
+			i=1;
 			j=0;
 			tmpx = 0;
 			tmpy = 0;
@@ -60,25 +60,13 @@ module snake(
 			data_g = status[cnt];
 			
 		end
-		
-//		if(appely == cnt)
-//		{
-//				int applex = 5;
-//				reg tmp = 8'b00000000;
-//				rightshift
-//				{
-//					
-//				}
-//				
-//		}
-
 
 	always@(posedge clk_mv)
 		begin
 			if(clear == 1)
 				begin
 					body = 3;
-					i=0;
+					i=1;
 					j=0;
 					tmpx = 0;
 					tmpy = 0;
@@ -102,142 +90,84 @@ module snake(
 					status[7] = 8'b11111111;
 				end
 			else
-			begin		
-				if(direction[3] && moveway != 2'b00)
-					moveway = 2'b11;
-				else if(direction[0] && moveway != 2'b11)
-						moveway = 2'b00;
-				else if(direction[1] && moveway != 2'b10)
-						moveway = 2'b01;
-				else if(direction[2] && moveway != 2'b01)
-						moveway = 2'b10;
-						
-				if(i <= body) //refresh snake status
+				begin		
+					if(direction[3] && moveway != 2'b00)
+						moveway = 2'b11;
+					else if(direction[0] && moveway != 2'b11)
+							moveway = 2'b00;
+					else if(direction[1] && moveway != 2'b10)
+							moveway = 2'b01;
+					else if(direction[2] && moveway != 2'b01)
+							moveway = 2'b10;
+//							
+//					if(i <= body) // dump snake position to snake status
+//						begin
+//							if(i == 1)
+//								status[snakex[0]][snakey[0]] = 1'b1;
+//							status[snakex[i]][snakey[i]] = 1'b0;
+//							i++;
+//							index = 0;
+//						end			
+//
+//		tmpx = snakex[body];
+//							tmpy = snakey[body];
+//							if(index < body)
+//								begin
+//									snakex[index] = snakex[index+1];
+//									snakey[index] = snakey[index+1];
+//									index++;
+//								end
+//								snakex[body] = tmpx + 1;
+//							else
+//								snakex[body]
+//							if (tmpx <= 7) = tmpx;
+//							snakey[body] = tmpy;
+//							if(index == body)
+//								i=1;	
+
+					if(moveway == 2'b11) // right
 						begin
-							if(i == 0)
-								status[snakex[0]][snakex[0]] = 1'b1;
-							else
-								status[snakex[i]][snakey[i]] = 1'b0;
-							i++;
+							status[snakex[0]][snakey[0]] = 1'b1;
+							for(i=0;i<3;i++)
+								begin
+									snakex[i] = snakex[i+1];
+									snakey[i] = snakey[i+1];
+								end
+							snakex[body] = snakex[body] + 1;						
 						end
-						
-				if(moveway == 2'b11 && i >= body +1) // right
-					begin
-						tmpx = snakex[body];
-						tmpy = snakey[body];
-						if(index < body)
-							begin
-								snakex[index] = snakex[index+1];
-								snakey[index] = snakey[index+1];
-								index++;
-							end
-						if (tmpx <= 7)
-							snakex[body] = tmpx + 1;
-						else
-							snakex[body] = tmpx;
-						snakey[body] = tmpy;
-						if(index == body)
-							i=0;						
-					end
-
-				else if(moveway == 2'b00 && i >= body+1) // left
-					begin
-						tmpx = snakex[body];
-						tmpy = snakey[body];
-						if(index < body)
-							begin
-								snakex[index] = snakex[index+1];
-								snakey[index] = snakey[index+1];
-								index++;
-							end
-							
-						if (tmpx >= 0)
-							snakex[body] = tmpx - 1;
-						else
-							snakex[body] = tmpx;
-						snakey[body] = tmpy;
-						if(index == body)
-							i=0;	
-						
-					end
-				else if(moveway == 2'b01 && i >= body+1) // down
-					begin
-						tmpx = snakex[body];
-						tmpy = snakey[body];
-						if(index < body)
-							begin
-								snakex[index] = snakex[index+1];
-								snakey[index] = snakey[index+1];
-								index++;
-							end
-						snakex[body] = tmpx;
-						if (tmpy >= 0)
-							snakey[body] = tmpy + 1;
-						else
-							snakey[body] = tmpy;
-						if(index == body)
-							i=0;	
-					end
-				else if(moveway == 2'b10 && i >= body+1) // up
-					begin
-						tmpx = snakex[body];
-						tmpy = snakey[body];
-						if(index < body)
-							begin
-								snakex[index] = snakex[index+1];
-								snakey[index] = snakey[index+1];
-								index++;
-							end
-						snakex[body] = tmpx;
-						if (tmpy >= 0)
-							snakey[body] = tmpy - 1;
-						else
-							snakey[body] = tmpy;
-						if(index == body)
-							i=0;	
-					end
-//					
-//					begin
-//						tmp = status[0][7];
-//						for(index = 7;index >= 1;index--)
-//								status[0][index] = status[0][index-1];
-//						status[0][0] = tmp;
-//					end
-					
-//begin
-//						tmp = status[0][0];
-//						for(index = 1;index <= 7;index++)
-//								status[0][index-1] = status[0][index];
-//						status[0][7] = tmp;
-//					end
-//					begin			
-//						tmp = status[7][0];
-//						for(index = 7;index >= 1;index--)
-//								status[index] = status[index-1];
-//						status[0][0] = tmp;	
-//					end
-					
-//					
-//						tmp = status[0][0];
-//						for(index = 1;index <= 7;index++)
-//								status[index-1] = status[index];
-//						status[7][0] = tmp;
-					
-//				if(direction[3])
-//				begin
-//					status[5][5] = 1;
-////						headx = headx + 1;
-////						status[headx][heady] = 1'b1;
-////						status[tailx][taily] = 1'b0;		
-			end		
-			
-			
-					
-				
-		
+					else if(moveway == 2'b00) // left
+						begin
+							status[snakex[0]][snakey[0]] = 1'b1;
+							for(i=0;i<3;i++)
+								begin
+									snakex[i] = snakex[i+1];
+									snakey[i] = snakey[i+1];
+								end
+							snakex[body] = snakex[body] - 1;
+						end
+					else if(moveway == 2'b01) // down
+						begin
+							status[snakex[0]][snakey[0]] = 1'b1;
+							for(i=0;i<3;i++)
+								begin
+									snakex[i] = snakex[i+1];
+									snakey[i] = snakey[i+1];
+								end
+							snakey[body] = snakey[body] + 1;	
+						end
+					else if(moveway == 2'b10) // up
+						begin
+							status[snakex[0]][snakey[0]] = 1'b1;
+							for(i=0;i<3;i++)
+								begin
+									snakex[i] = snakex[i+1];
+									snakey[i] = snakey[i+1];
+								end
+							snakey[body] = snakey[body] - 1;		
+						end
+					status[snakex[body]][snakey[body]] = 1'b0;
+				end	
 		end
-//		
-
 		
 endmodule
 
@@ -260,7 +190,7 @@ module divfreq_mv(input clk, output reg clk_mv);
 	reg[35:0] count;
 	always@(posedge clk)
 		begin
-			if(count > 3500000)
+			if(count > 10000000)
 				begin
 					count <= 35'b0;
 					clk_mv <= ~clk_mv;
