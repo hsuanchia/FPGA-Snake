@@ -1,12 +1,12 @@
-Analysis & Synthesis Status : Successful - Mon Jan 06 17:21:59 2020
+Analysis & Synthesis Status : Successful - Mon Jan 06 17:53:48 2020
 Quartus II 64-Bit Version : 13.1.0 Build 162 10/23/2013 SJ Web Edition
 Revision Name : snake
 Top-level Entity Name : snake
 Family : Cyclone III
-Total logic elements : 700
-    Total combinational functions : 698
-    Dedicated logic registers : 401
-Total registers : 401
+Total logic elements : 655
+    Total combinational functions : 653
+    Dedicated logic registers : 337
+Total registers : 337
 Total pins : 34
 Total virtual pins : 0
 Total memory bits : 0
