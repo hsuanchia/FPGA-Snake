@@ -19,15 +19,17 @@ module snake(
 	
 	initial
 		begin
-			body = 3;
+			body = 4;
 			i=0;
 			j=0;
 			tmpx = 0;
 			tmpy = 0;
 			index = 0;
+			snakex[3] = 3;
 			snakex[2] = 2;
 			snakex[1] = 1;
 			snakex[0] = 0;
+			snakey[3] = 0;
 			snakey[2] = 0;
 			snakey[1] = 0;
 			snakey[0] = 0;
@@ -66,15 +68,17 @@ module snake(
 		begin
 			if(clear == 1)
 				begin
-					body = 3;
+					body = 4;
 					i=0;
 					j=0;
 					tmpx = 0;
 					tmpy = 0;
 					index = 0;
+					snakex[3] = 3;
 					snakex[2] = 2;
 					snakex[1] = 1;
 					snakex[0] = 0;
+					snakey[3] = 0;
 					snakey[2] = 0;
 					snakey[1] = 0;
 					snakey[0] = 0;
@@ -155,6 +159,20 @@ module snake(
 							snakey[body-1] = snakey[body-1] - 1;		
 						end
 					status[snakex[body-1]][snakey[body-1]] = 1'b0;
+					for(i=0;i<2;i++)
+						begin
+							if (snake[1] == snake[i-1])
+								begin
+									status[0] = 8'b00000000;
+									status[1] = 8'b00000000;
+									status[2] = 8'b00000000;
+									status[3] = 8'b00000000;
+									status[4] = 8'b00000000;
+									status[5] = 8'b00000000;
+									status[6] = 8'b00000000;
+									status[7] = 8'b00000000;
+								end		
+						end
 					if(snakex[body-1] < 0 || snakex[body-1] > 7 || snakey[body-1] < 0 || snakey[body-1] > 7)
 						begin
 							status[0] = 8'b00000000;
@@ -166,6 +184,8 @@ module snake(
 							status[6] = 8'b00000000;
 							status[7] = 8'b00000000;
 						end
+						
+					
 				end	
 		end
 		
