@@ -31,9 +31,16 @@ direction[0] => always1.IN0
 direction[1] => always1.IN0
 direction[2] => always1.IN0
 direction[3] => always1.IN0
+a <= BCD2Seg:bcd.port5
+b <= BCD2Seg:bcd.port6
+c <= BCD2Seg:bcd.port7
+d <= BCD2Seg:bcd.port8
+e <= BCD2Seg:bcd.port9
+f <= BCD2Seg:bcd.port10
+g <= BCD2Seg:bcd.port11
+COM3 <= BCD2Seg:bcd.port12
+COM4 <= BCD2Seg:bcd.port13
 clk => clk.IN2
-clear => score.OUTPUTSELECT
-clear => score.OUTPUTSELECT
 clear => score.OUTPUTSELECT
 clear => score.OUTPUTSELECT
 clear => score.OUTPUTSELECT
@@ -4466,6 +4473,23 @@ clk => count[22].CLK
 clk => count[23].CLK
 clk => count[24].CLK
 clk_div <= clk_div~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|snake|BCD2Seg:bcd
+A => Decoder0.IN0
+B => Decoder0.IN1
+C => Decoder0.IN2
+D => Decoder0.IN3
+CLK_div => ~NO_FANOUT~
+a <= a.DB_MAX_OUTPUT_PORT_TYPE
+b <= b.DB_MAX_OUTPUT_PORT_TYPE
+c <= Decoder0.DB_MAX_OUTPUT_PORT_TYPE
+d <= WideOr0.DB_MAX_OUTPUT_PORT_TYPE
+e <= WideOr1.DB_MAX_OUTPUT_PORT_TYPE
+f <= WideOr2.DB_MAX_OUTPUT_PORT_TYPE
+g <= WideOr3.DB_MAX_OUTPUT_PORT_TYPE
+COM3 <= <VCC>
+COM4 <= <GND>
 
 
 |snake|divfreq_mv:F1

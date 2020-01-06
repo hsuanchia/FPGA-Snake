@@ -2,6 +2,7 @@ module snake(
 	output [7:0] data_r, data_g, data_b,
 	output reg[3:0] comm,
 	input [3:0] direction,
+	output a, b, c, d, e, f, g, COM3, COM4,
 	input clk,clear);
 	
 	reg [7:0] status [7:0];
@@ -15,8 +16,13 @@ module snake(
 	integer appley;
 	integer randomseedx = 1;
 	integer randomseedy = 1;
-	reg [5:0] score;
+
+	reg [3:0] A_count;
+	
+
+	reg [3:0] score;
 	reg [35:0] speed;
+
 	initial
 		begin
 
@@ -46,11 +52,18 @@ module snake(
 			status[5] = 8'b00000000;
 			status[6] = 8'b00000000;
 			status[7] = 8'b00000000;
+			COM3 = 1'b0;
+			COM4 = 1'b0;
 		end
 			
 	bit [2:0] cnt;
 
 	divfreq F0(clk,clk_div);
+
+	BCD2Seg bcd(score[3], score[2], score[1], score[0], clk_mv, a, b, c, d, e, f, g, COM3, COM4);
+	
+
+
 	divfreq_mv F1(clk,speed, clk_mv);
 	
 	always@(posedge clk_div) // Frame per second refresh
@@ -63,10 +76,12 @@ module snake(
  			
 			data_g = status[cnt];
 			data_r = apple[cnt];
+			
 		end
 
 	always@(posedge clk_mv)
 		begin
+			
 			if(clear == 1)
 				begin
 
@@ -109,10 +124,11 @@ module snake(
 					apple[applex][appley] = 1'b0;
 				end
 			else
+
 				begin		
 					if(snakex[body-1] == applex && snakey[body - 1] == appley)
 						begin
-							apple[applex][appley] = 1'b1;	
+							apple[applex][appley] = 1'b1;	// regenerate apple when get point
 							randomseedx = ((5*randomseedx) +3) % 16;
 							randomseedy = (randomseedy * 107321009) %13;
 							applex = randomseedx % 8;
@@ -148,7 +164,8 @@ module snake(
 						end
 					if(score % 5 == 0)
 						speed <= speed / 2'b10;
-					if(direction[3] && moveway != 2'b00)
+
+					if(direction[3] && moveway != 2'b00) // store position
 						moveway = 2'b11;
 					else if(direction[0] && moveway != 2'b11)
 							moveway = 2'b00;
@@ -156,7 +173,9 @@ module snake(
 							moveway = 2'b01;
 					else if(direction[2] && moveway != 2'b01)
 							moveway = 2'b10;
-							
+					
+					
+			
 					if(moveway == 2'b11) // right
 						begin
 							status[snakex[0]][snakey[0]] = 1'b1;
@@ -201,7 +220,7 @@ module snake(
 
 					
 
-					for(i=0;i<2;i++)
+					for(i=0;i<2;i++) // body collision game over
 						begin
 							if (snake[1] == snake[i-1])
 								begin
@@ -216,6 +235,7 @@ module snake(
 								end		
 						end
 
+					// border collision game over
 					if(snakex[body-1] < 0 || snakex[body-1] > 7 || snakey[body-1] < 0 || snakey[body-1] > 7)
 						begin
 							status[0] = 8'b00000000;
@@ -233,6 +253,8 @@ module snake(
 		end
 		
 endmodule
+
+
 
 
 module divfreq(input clk, output reg clk_div);
@@ -263,3 +285,52 @@ module divfreq_mv(input clk,input reg speed,output reg clk_mv);
 		end
 endmodule
 
+module BCD2Seg(
+	input A, B, C, D,
+	input CLK_div,
+	output reg a, b, c, d, e, f, g,
+	output reg COM3, COM4
+	);
+	
+	reg cnt;
+
+	always @({A, B, C, D})
+		begin
+			case ({A, B, C, D})
+				4'b0000: {a, b, c, d, e, f, g}= 7'b0000001;
+				4'b0001: {a, b, c, d, e, f, g}= 7'b1001111;
+				4'b0010: {a, b, c, d, e, f, g}= 7'b0010010;
+				4'b0011: {a, b, c, d, e, f, g}= 7'b0000110;
+				4'b0100: {a, b, c, d, e, f, g}= 7'b1001100;
+				4'b0101: {a, b, c, d, e, f, g}= 7'b0100100;
+				4'b0110: {a, b, c, d, e, f, g}= 7'b0100000;
+				4'b0111: {a, b, c, d, e, f, g}= 7'b0001111;
+				4'b1000: {a, b, c, d, e, f, g}= 7'b0000000;
+				4'b1001: {a, b, c, d, e, f, g}= 7'b0000100;
+				default: {a, b, c, d, e, f, g}= 7'b0000001;
+			endcase
+			COM3 = 1'b1;
+			COM4 = 1'b0;
+		end
+	
+//	always @(CLK_div)
+//		begin
+//			cnt = ~cnt;
+//			if (cnt == 1'b1)
+//				begin
+//					COM3 = 1'b0;
+//					COM4 = 1'b0;
+//
+//				end
+//			else
+//				begin
+//					COM3 = 1'b0;
+//					COM4 = 1'b0;
+//
+//				end
+//				
+//
+//		end
+		
+		
+endmodule
