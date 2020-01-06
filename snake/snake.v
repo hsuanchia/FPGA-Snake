@@ -3,26 +3,26 @@ module snake(
 	output reg[3:0] comm,
 	input [3:0] direction,
 	input clk,clear);
+	
 	reg [7:0] status [7:0];
 	reg [5:0] i;
 	reg [7:0] apple [7:0];
-	integer tmpx,tmpy;
 	reg [1:0] moveway;	
-	bit [5:0] body;
+	reg [5:0] body;
 	integer snakex [63:0];
 	integer snakey [63:0];
-	integer index;
-	integer applex,appley;
+	integer applex;
+	integer appley;
 	integer randomseedx = 1;
 	integer randomseedy = 1;
-	
+	reg [5:0] score;
+	reg [35:0] speed;
 	initial
 		begin
-			body = 3;
-			i=0;
-			tmpx = 0;
-			tmpy = 0;
-			index = 0;
+			body <= 2'b11;
+			i <= 1'b0;
+			score <= 1'b0;
+			speed <= 8'b11111111;
 			snakex[2] = 2;
 			snakex[1] = 1;
 			snakex[0] = 0;
@@ -44,9 +44,9 @@ module snake(
 		end
 			
 	bit [2:0] cnt;
-	reg count;
+
 	divfreq F0(clk,clk_div);
-	divfreq_mv F1(clk, clk_mv);
+	divfreq_mv F1(clk,speed, clk_mv);
 	
 	always@(posedge clk_div) // Frame per second refresh
 		begin
@@ -64,11 +64,10 @@ module snake(
 		begin
 			if(clear == 1)
 				begin
-					body = 3;
-					i=0;
-					tmpx = 0;
-					tmpy = 0;
-					index = 0;
+					body <= 2'b11;
+					i <= 1'b0;
+					score <= 1'b0;
+					speed = 100000000;
 					snakex[2] = 2;
 					snakex[1] = 1;
 					snakex[0] = 0;
@@ -94,14 +93,52 @@ module snake(
 					apple[7] = 8'b11111111;
 					// spawn random apple positions 
 					apple[applex][appley] = 1'b1;	
-					randomseedx = (randomseedx * 900123701) + 107321009;
-					randomseedy = (randomseedy * 300123701) + 107321003;
+					randomseedx = ((5*randomseedx) +107321003) % 17;
+					randomseedy = ((3*randomseedy) +107321009) % 13;
 					applex = randomseedx % 8;
 					appley = randomseedy % 8;
 					apple[applex][appley] = 1'b0;
 				end
 			else
 				begin		
+					if(snakex[body-1] == applex && snakey[body - 1] == appley)
+						begin
+							apple[applex][appley] = 1'b1;	
+							randomseedx = ((5*randomseedx) +3) % 16;
+							randomseedy = (randomseedy * 107321009) %13;
+							applex = randomseedx % 8;
+							appley = randomseedy % 8;
+							apple[applex][appley] = 1'b0;
+							score <= score + 1'b1;
+//							body <= body + 1'b1;
+//							for(i=0; i+1 < body;i++)
+//								begin
+//									snakex[i] = snakex[i+1];
+//									snakey[i] = snakey[i+1];
+//								end
+//							if(moveway == 2'b11)
+//								begin
+//									snakex[body-1] = snakex[body-2] + 1;
+//									snakey[body-1] = snakey[body-2];
+//								end
+//							else if(moveway == 2'b00)
+//								begin
+//									snakex[body-1] = snakex[body-2] - 1;
+//									snakey[body-1] = snakey[body-2];
+//								end
+//							else if(moveway == 2'b01)
+//								begin
+//									snakex[body-1] = snakex[body-2];
+//									snakey[body-1] = snakey[body-2] + 1;
+//								end
+//							else if(moveway == 2'b10)
+//								begin
+//									snakex[body-1] = snakex[body-2];
+//									snakey[body-1] = snakey[body-2] - 1;
+//								end
+						end
+					if(score % 5 == 0)
+						speed <= speed / 2'b10;
 					if(direction[3] && moveway != 2'b00)
 						moveway = 2'b11;
 					else if(direction[0] && moveway != 2'b11)
@@ -152,6 +189,7 @@ module snake(
 							snakey[body-1] = snakey[body-1] - 1;		
 						end
 					status[snakex[body-1]][snakey[body-1]] = 1'b0;
+					
 					if(snakex[body-1] < 0 || snakex[body-1] > 7 || snakey[body-1] < 0 || snakey[body-1] > 7)
 						begin
 							status[0] = 8'b00000000;
@@ -163,6 +201,8 @@ module snake(
 							status[6] = 8'b00000000;
 							status[7] = 8'b00000000;
 						end
+						
+					
 				end	
 		end
 		
@@ -183,7 +223,7 @@ module divfreq(input clk, output reg clk_div);
 		end
 endmodule
 
-module divfreq_mv(input clk, output reg clk_mv);
+module divfreq_mv(input clk,input reg speed,output reg clk_mv);
 	reg[35:0] count;
 	always@(posedge clk)
 		begin

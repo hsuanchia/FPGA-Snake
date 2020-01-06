@@ -1,5 +1,5 @@
 Assembler report for snake
-Mon Jan 06 18:12:37 2020
+Mon Jan 06 22:37:09 2020
 Quartus II 64-Bit Version 13.1.0 Build 162 10/23/2013 SJ Web Edition
 
 
@@ -37,7 +37,7 @@ applicable agreement for further details.
 +---------------------------------------------------------------+
 ; Assembler Summary                                             ;
 +-----------------------+---------------------------------------+
-; Assembler Status      ; Successful - Mon Jan 06 18:12:37 2020 ;
+; Assembler Status      ; Successful - Mon Jan 06 22:37:09 2020 ;
 ; Revision Name         ; snake                                 ;
 ; Top-level Entity Name ; snake                                 ;
 ; Family                ; Cyclone III                           ;
@@ -92,8 +92,8 @@ applicable agreement for further details.
 ; Option         ; Setting                                                   ;
 +----------------+-----------------------------------------------------------+
 ; Device         ; EP3C10E144C8                                              ;
-; JTAG usercode  ; 0x000FB113                                                ;
-; Checksum       ; 0x000FB113                                                ;
+; JTAG usercode  ; 0x001FD890                                                ;
+; Checksum       ; 0x001FD890                                                ;
 +----------------+-----------------------------------------------------------+
 
 
@@ -103,14 +103,14 @@ applicable agreement for further details.
 Info: *******************************************************************
 Info: Running Quartus II 64-Bit Assembler
     Info: Version 13.1.0 Build 162 10/23/2013 SJ Web Edition
-    Info: Processing started: Mon Jan 06 18:12:35 2020
+    Info: Processing started: Mon Jan 06 22:37:08 2020
 Info: Command: quartus_asm --read_settings_files=off --write_settings_files=off snake -c snake
 Info (115031): Writing out detailed assembly data for power analysis
 Info (115030): Assembler is generating device programming files
 Info: Quartus II 64-Bit Assembler was successful. 0 errors, 0 warnings
-    Info: Peak virtual memory: 4596 megabytes
-    Info: Processing ended: Mon Jan 06 18:12:37 2020
-    Info: Elapsed time: 00:00:02
+    Info: Peak virtual memory: 4592 megabytes
+    Info: Processing ended: Mon Jan 06 22:37:09 2020
+    Info: Elapsed time: 00:00:01
     Info: Total CPU time (on all processors): 00:00:01
 
 

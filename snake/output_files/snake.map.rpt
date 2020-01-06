@@ -1,5 +1,5 @@
 Analysis & Synthesis report for snake
-Mon Jan 06 18:12:21 2020
+Mon Jan 06 22:36:51 2020
 Quartus II 64-Bit Version 13.1.0 Build 162 10/23/2013 SJ Web Edition
 
 
@@ -13,14 +13,22 @@ Quartus II 64-Bit Version 13.1.0 Build 162 10/23/2013 SJ Web Edition
   5. Analysis & Synthesis Source Files Read
   6. Analysis & Synthesis Resource Usage Summary
   7. Analysis & Synthesis Resource Utilization by Entity
-  8. State Machine - |snake|moveway
-  9. Registers Removed During Synthesis
- 10. Removed Registers Triggering Further Register Optimizations
- 11. General Register Statistics
- 12. Inverted Register Statistics
- 13. Multiplexer Restructuring Statistics (Restructuring Performed)
- 14. Elapsed Time Per Partition
- 15. Analysis & Synthesis Messages
+  8. Analysis & Synthesis DSP Block Usage Summary
+  9. State Machine - |snake|moveway
+ 10. Registers Removed During Synthesis
+ 11. Removed Registers Triggering Further Register Optimizations
+ 12. General Register Statistics
+ 13. Inverted Register Statistics
+ 14. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 15. Parameter Settings for Inferred Entity Instance: lpm_mult:Mult0
+ 16. Parameter Settings for Inferred Entity Instance: lpm_divide:Mod2
+ 17. Parameter Settings for Inferred Entity Instance: lpm_divide:Mod1
+ 18. Parameter Settings for Inferred Entity Instance: lpm_divide:Mod0
+ 19. lpm_mult Parameter Settings by Entity Instance
+ 20. Port Connectivity Checks: "divfreq_mv:F1"
+ 21. Elapsed Time Per Partition
+ 22. Analysis & Synthesis Messages
+ 23. Analysis & Synthesis Suppressed Messages
 
 
 
@@ -46,19 +54,19 @@ applicable agreement for further details.
 +---------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                    ;
 +------------------------------------+--------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Mon Jan 06 18:12:21 2020      ;
+; Analysis & Synthesis Status        ; Successful - Mon Jan 06 22:36:51 2020      ;
 ; Quartus II 64-Bit Version          ; 13.1.0 Build 162 10/23/2013 SJ Web Edition ;
 ; Revision Name                      ; snake                                      ;
 ; Top-level Entity Name              ; snake                                      ;
 ; Family                             ; Cyclone III                                ;
-; Total logic elements               ; 688                                        ;
-;     Total combinational functions  ; 686                                        ;
-;     Dedicated logic registers      ; 337                                        ;
-; Total registers                    ; 337                                        ;
+; Total logic elements               ; 2,724                                      ;
+;     Total combinational functions  ; 2,722                                      ;
+;     Dedicated logic registers      ; 422                                        ;
+; Total registers                    ; 422                                        ;
 ; Total pins                         ; 34                                         ;
 ; Total virtual pins                 ; 0                                          ;
 ; Total memory bits                  ; 0                                          ;
-; Embedded Multiplier 9-bit elements ; 0                                          ;
+; Embedded Multiplier 9-bit elements ; 4                                          ;
 ; Total PLLs                         ; 0                                          ;
 +------------------------------------+--------------------------------------------+
 
@@ -162,55 +170,111 @@ Parallel compilation was disabled, but you have multiple processors available. E
 +----------------------------+--------+
 
 
-+---------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Source Files Read                                                                                    ;
-+----------------------------------+-----------------+------------------------+-----------------------------------+---------+
-; File Name with User-Entered Path ; Used in Netlist ; File Type              ; File Name with Absolute Path      ; Library ;
-+----------------------------------+-----------------+------------------------+-----------------------------------+---------+
-; snake.v                          ; yes             ; User Verilog HDL File  ; D:/FPGA-final/repos/snake/snake.v ;         ;
-+----------------------------------+-----------------+------------------------+-----------------------------------+---------+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                           ;
++----------------------------------+-----------------+------------------------------+--------------------------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type                    ; File Name with Absolute Path                                       ; Library ;
++----------------------------------+-----------------+------------------------------+--------------------------------------------------------------------+---------+
+; snake.v                          ; yes             ; User Verilog HDL File        ; D:/FPGA-final/repos/snake/snake.v                                  ;         ;
+; lpm_mult.tdf                     ; yes             ; Megafunction                 ; d:/altera/13.1/quartus/libraries/megafunctions/lpm_mult.tdf        ;         ;
+; aglobal131.inc                   ; yes             ; Megafunction                 ; d:/altera/13.1/quartus/libraries/megafunctions/aglobal131.inc      ;         ;
+; lpm_add_sub.inc                  ; yes             ; Megafunction                 ; d:/altera/13.1/quartus/libraries/megafunctions/lpm_add_sub.inc     ;         ;
+; multcore.inc                     ; yes             ; Megafunction                 ; d:/altera/13.1/quartus/libraries/megafunctions/multcore.inc        ;         ;
+; bypassff.inc                     ; yes             ; Megafunction                 ; d:/altera/13.1/quartus/libraries/megafunctions/bypassff.inc        ;         ;
+; altshift.inc                     ; yes             ; Megafunction                 ; d:/altera/13.1/quartus/libraries/megafunctions/altshift.inc        ;         ;
+; db/mult_07t.tdf                  ; yes             ; Auto-Generated Megafunction  ; D:/FPGA-final/repos/snake/db/mult_07t.tdf                          ;         ;
+; lpm_divide.tdf                   ; yes             ; Megafunction                 ; d:/altera/13.1/quartus/libraries/megafunctions/lpm_divide.tdf      ;         ;
+; abs_divider.inc                  ; yes             ; Megafunction                 ; d:/altera/13.1/quartus/libraries/megafunctions/abs_divider.inc     ;         ;
+; sign_div_unsign.inc              ; yes             ; Megafunction                 ; d:/altera/13.1/quartus/libraries/megafunctions/sign_div_unsign.inc ;         ;
+; db/lpm_divide_jno.tdf            ; yes             ; Auto-Generated Megafunction  ; D:/FPGA-final/repos/snake/db/lpm_divide_jno.tdf                    ;         ;
+; db/abs_divider_kbg.tdf           ; yes             ; Auto-Generated Megafunction  ; D:/FPGA-final/repos/snake/db/abs_divider_kbg.tdf                   ;         ;
+; db/alt_u_div_t5f.tdf             ; yes             ; Auto-Generated Megafunction  ; D:/FPGA-final/repos/snake/db/alt_u_div_t5f.tdf                     ;         ;
+; db/add_sub_unc.tdf               ; yes             ; Auto-Generated Megafunction  ; D:/FPGA-final/repos/snake/db/add_sub_unc.tdf                       ;         ;
+; db/add_sub_vnc.tdf               ; yes             ; Auto-Generated Megafunction  ; D:/FPGA-final/repos/snake/db/add_sub_vnc.tdf                       ;         ;
+; db/lpm_abs_pt9.tdf               ; yes             ; Auto-Generated Megafunction  ; D:/FPGA-final/repos/snake/db/lpm_abs_pt9.tdf                       ;         ;
+; db/lpm_abs_9v9.tdf               ; yes             ; Auto-Generated Megafunction  ; D:/FPGA-final/repos/snake/db/lpm_abs_9v9.tdf                       ;         ;
+; db/lpm_divide_kno.tdf            ; yes             ; Auto-Generated Megafunction  ; D:/FPGA-final/repos/snake/db/lpm_divide_kno.tdf                    ;         ;
+; db/abs_divider_lbg.tdf           ; yes             ; Auto-Generated Megafunction  ; D:/FPGA-final/repos/snake/db/abs_divider_lbg.tdf                   ;         ;
+; db/alt_u_div_v5f.tdf             ; yes             ; Auto-Generated Megafunction  ; D:/FPGA-final/repos/snake/db/alt_u_div_v5f.tdf                     ;         ;
+; db/lpm_abs_qt9.tdf               ; yes             ; Auto-Generated Megafunction  ; D:/FPGA-final/repos/snake/db/lpm_abs_qt9.tdf                       ;         ;
++----------------------------------+-----------------+------------------------------+--------------------------------------------------------------------+---------+
 
 
-+--------------------------------------------------------------------+
-; Analysis & Synthesis Resource Usage Summary                        ;
-+---------------------------------------------+----------------------+
-; Resource                                    ; Usage                ;
-+---------------------------------------------+----------------------+
-; Estimated Total logic elements              ; 688                  ;
-;                                             ;                      ;
-; Total combinational functions               ; 686                  ;
-; Logic element usage by number of LUT inputs ;                      ;
-;     -- 4 input functions                    ; 334                  ;
-;     -- 3 input functions                    ; 118                  ;
-;     -- <=2 input functions                  ; 234                  ;
-;                                             ;                      ;
-; Logic elements by mode                      ;                      ;
-;     -- normal mode                          ; 534                  ;
-;     -- arithmetic mode                      ; 152                  ;
-;                                             ;                      ;
-; Total registers                             ; 337                  ;
-;     -- Dedicated logic registers            ; 337                  ;
-;     -- I/O registers                        ; 0                    ;
-;                                             ;                      ;
-; I/O pins                                    ; 34                   ;
-; Embedded Multiplier 9-bit elements          ; 0                    ;
-; Maximum fan-out node                        ; divfreq_mv:F1|clk_mv ;
-; Maximum fan-out                             ; 261                  ;
-; Total fan-out                               ; 3122                 ;
-; Average fan-out                             ; 2.86                 ;
-+---------------------------------------------+----------------------+
++-----------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary               ;
++---------------------------------------------+-------------+
+; Resource                                    ; Usage       ;
++---------------------------------------------+-------------+
+; Estimated Total logic elements              ; 2,724       ;
+;                                             ;             ;
+; Total combinational functions               ; 2722        ;
+; Logic element usage by number of LUT inputs ;             ;
+;     -- 4 input functions                    ; 1039        ;
+;     -- 3 input functions                    ; 692         ;
+;     -- <=2 input functions                  ; 991         ;
+;                                             ;             ;
+; Logic elements by mode                      ;             ;
+;     -- normal mode                          ; 1964        ;
+;     -- arithmetic mode                      ; 758         ;
+;                                             ;             ;
+; Total registers                             ; 422         ;
+;     -- Dedicated logic registers            ; 422         ;
+;     -- I/O registers                        ; 0           ;
+;                                             ;             ;
+; I/O pins                                    ; 34          ;
+; Embedded Multiplier 9-bit elements          ; 4           ;
+; Maximum fan-out node                        ; clear~input ;
+; Maximum fan-out                             ; 405         ;
+; Total fan-out                               ; 9264        ;
+; Average fan-out                             ; 2.88        ;
++---------------------------------------------+-------------+
 
 
-+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Resource Utilization by Entity                                                                                                                          ;
-+----------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+----------------------+--------------+
-; Compilation Hierarchy Node ; LC Combinationals ; LC Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name  ; Library Name ;
-+----------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+----------------------+--------------+
-; |snake                     ; 686 (602)         ; 337 (274)    ; 0           ; 0            ; 0       ; 0         ; 34   ; 0            ; |snake               ; work         ;
-;    |divfreq:F0|            ; 35 (35)           ; 26 (26)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |snake|divfreq:F0    ; work         ;
-;    |divfreq_mv:F1|         ; 49 (49)           ; 37 (37)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |snake|divfreq_mv:F1 ; work         ;
-+----------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+----------------------+--------------+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                                                    ;
++---------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+-----------------------------------------------------------------------------------------------------+--------------+
+; Compilation Hierarchy Node            ; LC Combinationals ; LC Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                                 ; Library Name ;
++---------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+-----------------------------------------------------------------------------------------------------+--------------+
+; |snake                                ; 2722 (1015)       ; 422 (359)    ; 0           ; 4            ; 0       ; 2         ; 34   ; 0            ; |snake                                                                                              ; work         ;
+;    |divfreq:F0|                       ; 35 (35)           ; 26 (26)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |snake|divfreq:F0                                                                                   ; work         ;
+;    |divfreq_mv:F1|                    ; 49 (49)           ; 37 (37)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |snake|divfreq_mv:F1                                                                                ; work         ;
+;    |lpm_divide:Mod0|                  ; 553 (0)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |snake|lpm_divide:Mod0                                                                              ; work         ;
+;       |lpm_divide_kno:auto_generated| ; 553 (0)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |snake|lpm_divide:Mod0|lpm_divide_kno:auto_generated                                                ; work         ;
+;          |abs_divider_lbg:divider|    ; 553 (11)          ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |snake|lpm_divide:Mod0|lpm_divide_kno:auto_generated|abs_divider_lbg:divider                        ; work         ;
+;             |alt_u_div_v5f:divider|   ; 499 (499)         ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |snake|lpm_divide:Mod0|lpm_divide_kno:auto_generated|abs_divider_lbg:divider|alt_u_div_v5f:divider  ; work         ;
+;             |lpm_abs_9v9:my_abs_num|  ; 43 (43)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |snake|lpm_divide:Mod0|lpm_divide_kno:auto_generated|abs_divider_lbg:divider|lpm_abs_9v9:my_abs_num ; work         ;
+;    |lpm_divide:Mod1|                  ; 491 (0)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |snake|lpm_divide:Mod1                                                                              ; work         ;
+;       |lpm_divide_jno:auto_generated| ; 491 (0)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |snake|lpm_divide:Mod1|lpm_divide_jno:auto_generated                                                ; work         ;
+;          |abs_divider_kbg:divider|    ; 491 (9)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |snake|lpm_divide:Mod1|lpm_divide_jno:auto_generated|abs_divider_kbg:divider                        ; work         ;
+;             |alt_u_div_t5f:divider|   ; 441 (441)         ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |snake|lpm_divide:Mod1|lpm_divide_jno:auto_generated|abs_divider_kbg:divider|alt_u_div_t5f:divider  ; work         ;
+;             |lpm_abs_9v9:my_abs_num|  ; 41 (41)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |snake|lpm_divide:Mod1|lpm_divide_jno:auto_generated|abs_divider_kbg:divider|lpm_abs_9v9:my_abs_num ; work         ;
+;    |lpm_divide:Mod2|                  ; 555 (0)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |snake|lpm_divide:Mod2                                                                              ; work         ;
+;       |lpm_divide_jno:auto_generated| ; 555 (0)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |snake|lpm_divide:Mod2|lpm_divide_jno:auto_generated                                                ; work         ;
+;          |abs_divider_kbg:divider|    ; 555 (9)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |snake|lpm_divide:Mod2|lpm_divide_jno:auto_generated|abs_divider_kbg:divider                        ; work         ;
+;             |alt_u_div_t5f:divider|   ; 488 (488)         ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |snake|lpm_divide:Mod2|lpm_divide_jno:auto_generated|abs_divider_kbg:divider|alt_u_div_t5f:divider  ; work         ;
+;             |lpm_abs_9v9:my_abs_num|  ; 58 (58)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |snake|lpm_divide:Mod2|lpm_divide_jno:auto_generated|abs_divider_kbg:divider|lpm_abs_9v9:my_abs_num ; work         ;
+;    |lpm_mult:Mult0|                   ; 24 (0)            ; 0 (0)        ; 0           ; 4            ; 0       ; 2         ; 0    ; 0            ; |snake|lpm_mult:Mult0                                                                               ; work         ;
+;       |mult_07t:auto_generated|       ; 24 (24)           ; 0 (0)        ; 0           ; 4            ; 0       ; 2         ; 0    ; 0            ; |snake|lpm_mult:Mult0|mult_07t:auto_generated                                                       ; work         ;
++---------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+-----------------------------------------------------------------------------------------------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
+
+
++-----------------------------------------------------+
+; Analysis & Synthesis DSP Block Usage Summary        ;
++---------------------------------------+-------------+
+; Statistic                             ; Number Used ;
++---------------------------------------+-------------+
+; Simple Multipliers (9-bit)            ; 0           ;
+; Simple Multipliers (18-bit)           ; 2           ;
+; Embedded Multiplier Blocks            ; --          ;
+; Embedded Multiplier 9-bit elements    ; 4           ;
+; Signed Embedded Multipliers           ; 1           ;
+; Unsigned Embedded Multipliers         ; 0           ;
+; Mixed Sign Embedded Multipliers       ; 1           ;
+; Variable Sign Embedded Multipliers    ; 0           ;
+; Dedicated Input Shift Register Chains ; 0           ;
++---------------------------------------+-------------+
+Note: number of Embedded Multiplier Blocks used is only available after a successful fit.
 
 
 Encoding Type:  One-Hot
@@ -234,6 +298,14 @@ Encoding Type:  One-Hot
 ; comm[3]~reg0                             ; Stuck at VCC due to stuck port data_in ;
 ; body[0,1]                                ; Stuck at VCC due to stuck port data_in ;
 ; body[2..5]                               ; Stuck at GND due to stuck port data_in ;
+; applex[3..9,11..31]                      ; Merged with applex[10]                 ;
+; randomseedx[2]                           ; Merged with applex[2]                  ;
+; randomseedx[1]                           ; Merged with applex[1]                  ;
+; appley[3..9,11..31]                      ; Merged with appley[10]                 ;
+; randomseedy[2]                           ; Merged with appley[2]                  ;
+; randomseedy[1]                           ; Merged with appley[1]                  ;
+; randomseedx[5..9,11..31]                 ; Merged with randomseedx[10]            ;
+; randomseedy[4..9,11..31]                 ; Merged with randomseedy[10]            ;
 ; snakex[46][10]                           ; Merged with snakex[46][0]              ;
 ; snakex[46][11]                           ; Merged with snakex[46][0]              ;
 ; snakex[46][12]                           ; Merged with snakex[46][0]              ;
@@ -4140,7 +4212,9 @@ Encoding Type:  One-Hot
 ; snakex[62][0]                            ; Stuck at GND due to stuck port data_in ;
 ; moveway~6                                ; Lost fanout                            ;
 ; moveway~7                                ; Lost fanout                            ;
-; Total Number of Removed Registers = 3913 ;                                        ;
+; randomseedx[0]                           ; Merged with applex[0]                  ;
+; randomseedy[0]                           ; Merged with appley[0]                  ;
+; Total Number of Removed Registers = 4028 ;                                        ;
 +------------------------------------------+----------------------------------------+
 
 
@@ -4161,31 +4235,41 @@ Encoding Type:  One-Hot
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 337   ;
+; Total registers                              ; 422   ;
 ; Number of registers using Synchronous Clear  ; 61    ;
-; Number of registers using Synchronous Load   ; 61    ;
+; Number of registers using Synchronous Load   ; 62    ;
 ; Number of registers using Asynchronous Clear ; 0     ;
 ; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 128   ;
+; Number of registers using Clock Enable       ; 205   ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
 
 
-+--------------------------------------------------+
-; Inverted Register Statistics                     ;
-+----------------------------------------+---------+
-; Inverted Register                      ; Fan out ;
-+----------------------------------------+---------+
-; data_g[0]~reg0                         ; 1       ;
-; data_g[1]~reg0                         ; 1       ;
-; data_g[2]~reg0                         ; 1       ;
-; data_g[3]~reg0                         ; 1       ;
-; data_g[4]~reg0                         ; 1       ;
-; data_g[5]~reg0                         ; 1       ;
-; data_g[6]~reg0                         ; 1       ;
-; data_g[7]~reg0                         ; 1       ;
-; Total number of inverted registers = 8 ;         ;
-+----------------------------------------+---------+
++---------------------------------------------------+
+; Inverted Register Statistics                      ;
++-----------------------------------------+---------+
+; Inverted Register                       ; Fan out ;
++-----------------------------------------+---------+
+; data_r[0]~reg0                          ; 1       ;
+; data_r[1]~reg0                          ; 1       ;
+; data_r[2]~reg0                          ; 1       ;
+; data_r[3]~reg0                          ; 1       ;
+; data_r[4]~reg0                          ; 1       ;
+; data_r[5]~reg0                          ; 1       ;
+; data_r[6]~reg0                          ; 1       ;
+; data_r[7]~reg0                          ; 1       ;
+; data_g[0]~reg0                          ; 1       ;
+; data_g[1]~reg0                          ; 1       ;
+; data_g[2]~reg0                          ; 1       ;
+; data_g[3]~reg0                          ; 1       ;
+; data_g[4]~reg0                          ; 1       ;
+; data_g[5]~reg0                          ; 1       ;
+; data_g[6]~reg0                          ; 1       ;
+; data_g[7]~reg0                          ; 1       ;
+; appley[0]                               ; 28      ;
+; applex[0]                               ; 15      ;
+; Total number of inverted registers = 18 ;         ;
++-----------------------------------------+---------+
 
 
 +------------------------------------------------------------------------------------------------------------------------------------------+
@@ -4193,12 +4277,147 @@ Encoding Type:  One-Hot
 +--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------+
 ; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------+
-; 6:1                ; 128 bits  ; 512 LEs       ; 128 LEs              ; 384 LEs                ; Yes        ; |snake|snakey[0][29]       ;
-; 8:1                ; 8 bits    ; 40 LEs        ; 40 LEs               ; 0 LEs                  ; Yes        ; |snake|data_g[7]~reg0      ;
+; 3:1                ; 9 bits    ; 18 LEs        ; 9 LEs                ; 9 LEs                  ; Yes        ; |snake|randomseedx[4]      ;
+; 6:1                ; 128 bits  ; 512 LEs       ; 128 LEs              ; 384 LEs                ; Yes        ; |snake|snakex[0][28]       ;
+; 3:1                ; 6 bits    ; 12 LEs        ; 6 LEs                ; 6 LEs                  ; Yes        ; |snake|appley[2]           ;
+; 8:1                ; 16 bits   ; 80 LEs        ; 80 LEs               ; 0 LEs                  ; Yes        ; |snake|data_r[2]~reg0      ;
 ; 3:1                ; 32 bits   ; 64 LEs        ; 64 LEs               ; 0 LEs                  ; No         ; |snake|snakex              ;
 ; 5:1                ; 4 bits    ; 12 LEs        ; 12 LEs               ; 0 LEs                  ; No         ; |snake|moveway             ;
 ; 5:1                ; 32 bits   ; 96 LEs        ; 64 LEs               ; 32 LEs                 ; No         ; |snake|snakey              ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------+
+
+
++------------------------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: lpm_mult:Mult0                    ;
++------------------------------------------------+-------------+---------------------+
+; Parameter Name                                 ; Value       ; Type                ;
++------------------------------------------------+-------------+---------------------+
+; AUTO_CARRY_CHAINS                              ; ON          ; AUTO_CARRY          ;
+; IGNORE_CARRY_BUFFERS                           ; OFF         ; IGNORE_CARRY        ;
+; AUTO_CASCADE_CHAINS                            ; ON          ; AUTO_CASCADE        ;
+; IGNORE_CASCADE_BUFFERS                         ; OFF         ; IGNORE_CASCADE      ;
+; LPM_WIDTHA                                     ; 5           ; Untyped             ;
+; LPM_WIDTHB                                     ; 28          ; Untyped             ;
+; LPM_WIDTHP                                     ; 33          ; Untyped             ;
+; LPM_WIDTHR                                     ; 33          ; Untyped             ;
+; LPM_WIDTHS                                     ; 1           ; Untyped             ;
+; LPM_REPRESENTATION                             ; SIGNED      ; Untyped             ;
+; LPM_PIPELINE                                   ; 0           ; Untyped             ;
+; LATENCY                                        ; 0           ; Untyped             ;
+; INPUT_A_IS_CONSTANT                            ; NO          ; Untyped             ;
+; INPUT_B_IS_CONSTANT                            ; YES         ; Untyped             ;
+; USE_EAB                                        ; OFF         ; Untyped             ;
+; MAXIMIZE_SPEED                                 ; 5           ; Untyped             ;
+; DEVICE_FAMILY                                  ; Cyclone III ; Untyped             ;
+; CARRY_CHAIN                                    ; MANUAL      ; Untyped             ;
+; APEX20K_TECHNOLOGY_MAPPER                      ; LUT         ; TECH_MAPPER_APEX20K ;
+; DEDICATED_MULTIPLIER_CIRCUITRY                 ; AUTO        ; Untyped             ;
+; DEDICATED_MULTIPLIER_MIN_INPUT_WIDTH_FOR_AUTO  ; 0           ; Untyped             ;
+; DEDICATED_MULTIPLIER_MIN_OUTPUT_WIDTH_FOR_AUTO ; 0           ; Untyped             ;
+; CBXI_PARAMETER                                 ; mult_07t    ; Untyped             ;
+; INPUT_A_FIXED_VALUE                            ; Bx          ; Untyped             ;
+; INPUT_B_FIXED_VALUE                            ; Bx          ; Untyped             ;
+; USE_AHDL_IMPLEMENTATION                        ; OFF         ; Untyped             ;
++------------------------------------------------+-------------+---------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: lpm_divide:Mod2 ;
++------------------------+----------------+------------------------+
+; Parameter Name         ; Value          ; Type                   ;
++------------------------+----------------+------------------------+
+; LPM_WIDTHN             ; 32             ; Untyped                ;
+; LPM_WIDTHD             ; 5              ; Untyped                ;
+; LPM_NREPRESENTATION    ; SIGNED         ; Untyped                ;
+; LPM_DREPRESENTATION    ; SIGNED         ; Untyped                ;
+; LPM_PIPELINE           ; 0              ; Untyped                ;
+; LPM_REMAINDERPOSITIVE  ; FALSE          ; Untyped                ;
+; MAXIMIZE_SPEED         ; 5              ; Untyped                ;
+; CBXI_PARAMETER         ; lpm_divide_jno ; Untyped                ;
+; CARRY_CHAIN            ; MANUAL         ; Untyped                ;
+; OPTIMIZE_FOR_SPEED     ; 5              ; Untyped                ;
+; AUTO_CARRY_CHAINS      ; ON             ; AUTO_CARRY             ;
+; IGNORE_CARRY_BUFFERS   ; OFF            ; IGNORE_CARRY           ;
+; AUTO_CASCADE_CHAINS    ; ON             ; AUTO_CASCADE           ;
+; IGNORE_CASCADE_BUFFERS ; OFF            ; IGNORE_CASCADE         ;
++------------------------+----------------+------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: lpm_divide:Mod1 ;
++------------------------+----------------+------------------------+
+; Parameter Name         ; Value          ; Type                   ;
++------------------------+----------------+------------------------+
+; LPM_WIDTHN             ; 32             ; Untyped                ;
+; LPM_WIDTHD             ; 5              ; Untyped                ;
+; LPM_NREPRESENTATION    ; SIGNED         ; Untyped                ;
+; LPM_DREPRESENTATION    ; SIGNED         ; Untyped                ;
+; LPM_PIPELINE           ; 0              ; Untyped                ;
+; LPM_REMAINDERPOSITIVE  ; FALSE          ; Untyped                ;
+; MAXIMIZE_SPEED         ; 5              ; Untyped                ;
+; CBXI_PARAMETER         ; lpm_divide_jno ; Untyped                ;
+; CARRY_CHAIN            ; MANUAL         ; Untyped                ;
+; OPTIMIZE_FOR_SPEED     ; 5              ; Untyped                ;
+; AUTO_CARRY_CHAINS      ; ON             ; AUTO_CARRY             ;
+; IGNORE_CARRY_BUFFERS   ; OFF            ; IGNORE_CARRY           ;
+; AUTO_CASCADE_CHAINS    ; ON             ; AUTO_CASCADE           ;
+; IGNORE_CASCADE_BUFFERS ; OFF            ; IGNORE_CASCADE         ;
++------------------------+----------------+------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: lpm_divide:Mod0 ;
++------------------------+----------------+------------------------+
+; Parameter Name         ; Value          ; Type                   ;
++------------------------+----------------+------------------------+
+; LPM_WIDTHN             ; 32             ; Untyped                ;
+; LPM_WIDTHD             ; 6              ; Untyped                ;
+; LPM_NREPRESENTATION    ; SIGNED         ; Untyped                ;
+; LPM_DREPRESENTATION    ; SIGNED         ; Untyped                ;
+; LPM_PIPELINE           ; 0              ; Untyped                ;
+; LPM_REMAINDERPOSITIVE  ; FALSE          ; Untyped                ;
+; MAXIMIZE_SPEED         ; 5              ; Untyped                ;
+; CBXI_PARAMETER         ; lpm_divide_kno ; Untyped                ;
+; CARRY_CHAIN            ; MANUAL         ; Untyped                ;
+; OPTIMIZE_FOR_SPEED     ; 5              ; Untyped                ;
+; AUTO_CARRY_CHAINS      ; ON             ; AUTO_CARRY             ;
+; IGNORE_CARRY_BUFFERS   ; OFF            ; IGNORE_CARRY           ;
+; AUTO_CASCADE_CHAINS    ; ON             ; AUTO_CASCADE           ;
+; IGNORE_CASCADE_BUFFERS ; OFF            ; IGNORE_CASCADE         ;
++------------------------+----------------+------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------+
+; lpm_mult Parameter Settings by Entity Instance         ;
++---------------------------------------+----------------+
+; Name                                  ; Value          ;
++---------------------------------------+----------------+
+; Number of entity instances            ; 1              ;
+; Entity Instance                       ; lpm_mult:Mult0 ;
+;     -- LPM_WIDTHA                     ; 5              ;
+;     -- LPM_WIDTHB                     ; 28             ;
+;     -- LPM_WIDTHP                     ; 33             ;
+;     -- LPM_REPRESENTATION             ; SIGNED         ;
+;     -- INPUT_A_IS_CONSTANT            ; NO             ;
+;     -- INPUT_B_IS_CONSTANT            ; YES            ;
+;     -- USE_EAB                        ; OFF            ;
+;     -- DEDICATED_MULTIPLIER_CIRCUITRY ; AUTO           ;
+;     -- INPUT_A_FIXED_VALUE            ; Bx             ;
+;     -- INPUT_B_FIXED_VALUE            ; Bx             ;
++---------------------------------------+----------------+
+
+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "divfreq_mv:F1"                                                                                                                                                                     ;
++-------+-------+----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port  ; Type  ; Severity ; Details                                                                                                                                                                            ;
++-------+-------+----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; speed ; Input ; Warning  ; Input port expression (36 bits) is wider than the input port (1 bits) it drives.  The 35 most-significant bit(s) in the expression will be dangling if they have no other fanouts. ;
++-------+-------+----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 
 +-------------------------------+
@@ -4206,7 +4425,7 @@ Encoding Type:  One-Hot
 +----------------+--------------+
 ; Partition Name ; Elapsed Time ;
 +----------------+--------------+
-; Top            ; 00:00:14     ;
+; Top            ; 00:00:13     ;
 +----------------+--------------+
 
 
@@ -4216,33 +4435,80 @@ Encoding Type:  One-Hot
 Info: *******************************************************************
 Info: Running Quartus II 64-Bit Analysis & Synthesis
     Info: Version 13.1.0 Build 162 10/23/2013 SJ Web Edition
-    Info: Processing started: Mon Jan 06 18:11:43 2020
+    Info: Processing started: Mon Jan 06 22:36:20 2020
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off snake -c snake
 Warning (20028): Parallel compilation is not licensed and has been disabled
 Info (12021): Found 3 design units, including 3 entities, in source file snake.v
     Info (12023): Found entity 1: snake
     Info (12023): Found entity 2: divfreq
     Info (12023): Found entity 3: divfreq_mv
-Warning (10236): Verilog HDL Implicit Net warning at snake.v(44): created implicit net for "clk_div"
-Warning (10236): Verilog HDL Implicit Net warning at snake.v(45): created implicit net for "clk_mv"
+Warning (10236): Verilog HDL Implicit Net warning at snake.v(48): created implicit net for "clk_div"
+Warning (10236): Verilog HDL Implicit Net warning at snake.v(49): created implicit net for "clk_mv"
 Info (12127): Elaborating entity "snake" for the top level hierarchy
-Warning (10036): Verilog HDL or VHDL warning at snake.v(8): object "tmpx" assigned a value but never read
-Warning (10036): Verilog HDL or VHDL warning at snake.v(8): object "tmpy" assigned a value but never read
-Warning (10036): Verilog HDL or VHDL warning at snake.v(13): object "index" assigned a value but never read
-Warning (10855): Verilog HDL warning at snake.v(16): initial value for variable snakex should be constant
-Warning (10855): Verilog HDL warning at snake.v(16): initial value for variable snakey should be constant
-Warning (10230): Verilog HDL assignment warning at snake.v(52): truncated value with size 32 to match size of target (3)
+Warning (10855): Verilog HDL warning at snake.v(21): initial value for variable snakex should be constant
+Warning (10855): Verilog HDL warning at snake.v(21): initial value for variable snakey should be constant
+Warning (10230): Verilog HDL assignment warning at snake.v(56): truncated value with size 32 to match size of target (3)
 Info (12128): Elaborating entity "divfreq" for hierarchy "divfreq:F0"
 Info (12128): Elaborating entity "divfreq_mv" for hierarchy "divfreq_mv:F1"
+Info (278001): Inferred 4 megafunctions from design logic
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "Mult0"
+    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "Mod2"
+    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "Mod1"
+    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "Mod0"
+Info (12130): Elaborated megafunction instantiation "lpm_mult:Mult0"
+Info (12133): Instantiated megafunction "lpm_mult:Mult0" with the following parameter:
+    Info (12134): Parameter "LPM_WIDTHA" = "5"
+    Info (12134): Parameter "LPM_WIDTHB" = "28"
+    Info (12134): Parameter "LPM_WIDTHP" = "33"
+    Info (12134): Parameter "LPM_WIDTHR" = "33"
+    Info (12134): Parameter "LPM_WIDTHS" = "1"
+    Info (12134): Parameter "LPM_REPRESENTATION" = "SIGNED"
+    Info (12134): Parameter "INPUT_A_IS_CONSTANT" = "NO"
+    Info (12134): Parameter "INPUT_B_IS_CONSTANT" = "YES"
+    Info (12134): Parameter "MAXIMIZE_SPEED" = "5"
+Info (12021): Found 1 design units, including 1 entities, in source file db/mult_07t.tdf
+    Info (12023): Found entity 1: mult_07t
+Info (12130): Elaborated megafunction instantiation "lpm_divide:Mod2"
+Info (12133): Instantiated megafunction "lpm_divide:Mod2" with the following parameter:
+    Info (12134): Parameter "LPM_WIDTHN" = "32"
+    Info (12134): Parameter "LPM_WIDTHD" = "5"
+    Info (12134): Parameter "LPM_NREPRESENTATION" = "SIGNED"
+    Info (12134): Parameter "LPM_DREPRESENTATION" = "SIGNED"
+    Info (12134): Parameter "LPM_HINT" = "LPM_REMAINDERPOSITIVE=FALSE"
+Info (12021): Found 1 design units, including 1 entities, in source file db/lpm_divide_jno.tdf
+    Info (12023): Found entity 1: lpm_divide_jno
+Info (12021): Found 1 design units, including 1 entities, in source file db/abs_divider_kbg.tdf
+    Info (12023): Found entity 1: abs_divider_kbg
+Info (12021): Found 1 design units, including 1 entities, in source file db/alt_u_div_t5f.tdf
+    Info (12023): Found entity 1: alt_u_div_t5f
+Info (12021): Found 1 design units, including 1 entities, in source file db/add_sub_unc.tdf
+    Info (12023): Found entity 1: add_sub_unc
+Info (12021): Found 1 design units, including 1 entities, in source file db/add_sub_vnc.tdf
+    Info (12023): Found entity 1: add_sub_vnc
+Info (12021): Found 1 design units, including 1 entities, in source file db/lpm_abs_pt9.tdf
+    Info (12023): Found entity 1: lpm_abs_pt9
+Info (12021): Found 1 design units, including 1 entities, in source file db/lpm_abs_9v9.tdf
+    Info (12023): Found entity 1: lpm_abs_9v9
+Info (12130): Elaborated megafunction instantiation "lpm_divide:Mod0"
+Info (12133): Instantiated megafunction "lpm_divide:Mod0" with the following parameter:
+    Info (12134): Parameter "LPM_WIDTHN" = "32"
+    Info (12134): Parameter "LPM_WIDTHD" = "6"
+    Info (12134): Parameter "LPM_NREPRESENTATION" = "SIGNED"
+    Info (12134): Parameter "LPM_DREPRESENTATION" = "SIGNED"
+    Info (12134): Parameter "LPM_HINT" = "LPM_REMAINDERPOSITIVE=FALSE"
+Info (12021): Found 1 design units, including 1 entities, in source file db/lpm_divide_kno.tdf
+    Info (12023): Found entity 1: lpm_divide_kno
+Info (12021): Found 1 design units, including 1 entities, in source file db/abs_divider_lbg.tdf
+    Info (12023): Found entity 1: abs_divider_lbg
+Info (12021): Found 1 design units, including 1 entities, in source file db/alt_u_div_v5f.tdf
+    Info (12023): Found entity 1: alt_u_div_v5f
+Info (12021): Found 1 design units, including 1 entities, in source file db/lpm_abs_qt9.tdf
+    Info (12023): Found entity 1: lpm_abs_qt9
+Warning (12241): 1 hierarchies have connectivity warnings - see the Connectivity Checks report folder
+Info (13014): Ignored 140 buffer(s)
+    Info (13016): Ignored 87 CARRY_SUM buffer(s)
+    Info (13019): Ignored 53 SOFT buffer(s)
 Warning (13024): Output pins are stuck at VCC or GND
-    Warning (13410): Pin "data_r[0]" is stuck at VCC
-    Warning (13410): Pin "data_r[1]" is stuck at VCC
-    Warning (13410): Pin "data_r[2]" is stuck at VCC
-    Warning (13410): Pin "data_r[3]" is stuck at VCC
-    Warning (13410): Pin "data_r[4]" is stuck at VCC
-    Warning (13410): Pin "data_r[5]" is stuck at VCC
-    Warning (13410): Pin "data_r[6]" is stuck at VCC
-    Warning (13410): Pin "data_r[7]" is stuck at VCC
     Warning (13410): Pin "data_b[0]" is stuck at VCC
     Warning (13410): Pin "data_b[1]" is stuck at VCC
     Warning (13410): Pin "data_b[2]" is stuck at VCC
@@ -4254,16 +4520,24 @@ Warning (13024): Output pins are stuck at VCC or GND
     Warning (13410): Pin "comm[3]" is stuck at VCC
 Info (286030): Timing-Driven Synthesis is running
 Info (17049): 2 registers lost all their fanouts during netlist optimizations.
+Info (144001): Generated suppressed messages file D:/FPGA-final/repos/snake/output_files/snake.map.smsg
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Info (21057): Implemented 724 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 2764 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 6 input pins
     Info (21059): Implemented 28 output pins
-    Info (21061): Implemented 690 logic cells
-Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 27 warnings
-    Info: Peak virtual memory: 5636 megabytes
-    Info: Processing ended: Mon Jan 06 18:12:21 2020
-    Info: Elapsed time: 00:00:38
-    Info: Total CPU time (on all processors): 00:00:37
+    Info (21061): Implemented 2726 logic cells
+    Info (21062): Implemented 4 DSP elements
+Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 17 warnings
+    Info: Peak virtual memory: 5645 megabytes
+    Info: Processing ended: Mon Jan 06 22:36:51 2020
+    Info: Elapsed time: 00:00:31
+    Info: Total CPU time (on all processors): 00:00:31
+
+
++------------------------------------------+
+; Analysis & Synthesis Suppressed Messages ;
++------------------------------------------+
+The suppressed messages can be found in D:/FPGA-final/repos/snake/output_files/snake.map.smsg.
 
 

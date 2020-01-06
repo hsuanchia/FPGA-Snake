@@ -1,16 +1,16 @@
-Fitter Status : Successful - Mon Jan 06 18:12:33 2020
+Fitter Status : Successful - Mon Jan 06 22:37:06 2020
 Quartus II 64-Bit Version : 13.1.0 Build 162 10/23/2013 SJ Web Edition
 Revision Name : snake
 Top-level Entity Name : snake
 Family : Cyclone III
 Device : EP3C10E144C8
 Timing Models : Final
-Total logic elements : 751 / 10,320 ( 7 % )
-    Total combinational functions : 686 / 10,320 ( 7 % )
-    Dedicated logic registers : 337 / 10,320 ( 3 % )
-Total registers : 337
+Total logic elements : 2,790 / 10,320 ( 27 % )
+    Total combinational functions : 2,722 / 10,320 ( 26 % )
+    Dedicated logic registers : 422 / 10,320 ( 4 % )
+Total registers : 422
 Total pins : 34 / 95 ( 36 % )
 Total virtual pins : 0
 Total memory bits : 0 / 423,936 ( 0 % )
-Embedded Multiplier 9-bit elements : 0 / 46 ( 0 % )
+Embedded Multiplier 9-bit elements : 4 / 46 ( 9 % )
 Total PLLs : 0 / 2 ( 0 % )
