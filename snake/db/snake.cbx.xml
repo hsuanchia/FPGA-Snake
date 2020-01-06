@@ -1,5 +1,7 @@
 <?xml version="1.0" ?>
 <LOG_ROOT>
 	<PROJECT NAME="snake">
+		<CBX_INST_ENTRY INSTANCE_NAME="|snake|lpm_mult:Mult0" CBX_FILE_NAME="mult_d8t.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|snake|lpm_mult:Mult1" CBX_FILE_NAME="mult_b8t.tdf"/>
 	</PROJECT>
 </LOG_ROOT>

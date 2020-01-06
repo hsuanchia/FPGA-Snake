@@ -2,6 +2,7 @@ module snake(
 	output [7:0] data_r, data_g, data_b,
 	output reg[3:0] comm,
 	input [3:0] direction,
+	output a, b, c, d, e, f, g, COM3, COM4,
 	input clk,clear);
 	reg [7:0] status [7:0];
 	reg [5:0] i;
@@ -15,6 +16,7 @@ module snake(
 	integer applex,appley;
 	integer randomseedx = 1;
 	integer randomseedy = 1;
+	reg [3:0] A_count;
 	
 	initial
 		begin
@@ -43,12 +45,21 @@ module snake(
 			status[5] = 8'b00000000;
 			status[6] = 8'b00000000;
 			status[7] = 8'b00000000;
+			COM3 = 1'b0;
+			COM4 = 1'b0;
 		end
 			
 	bit [2:0] cnt;
 	reg count;
 	divfreq F0(clk,clk_div);
 	divfreq_mv F1(clk, clk_mv);
+	BCD2Seg bcd(A_count[3], A_count[2], A_count[1], A_count[0], clk_mv, a, b, c, d, e, f, g, COM3, COM4);
+	
+	always@(posedge clk_mv)
+		if(A_count >= 4'b1111) 
+			A_count <= 4'b0000;
+		else 
+			A_count <= A_count + 1'b1;
 	
 	always@(posedge clk_div) // Frame per second refresh
 		begin
@@ -60,10 +71,12 @@ module snake(
  			
 			data_g = status[cnt];
 			data_r = apple[cnt];
+			
 		end
 
 	always@(posedge clk_mv)
 		begin
+			
 			if(clear == 1)
 				begin
 					body = 4;
@@ -105,7 +118,9 @@ module snake(
 					apple[applex][appley] = 1'b0;
 				end
 			else
-				begin		
+				begin
+					
+					
 					if(direction[3] && moveway != 2'b00)
 						moveway = 2'b11;
 					else if(direction[0] && moveway != 2'b11)
@@ -114,7 +129,9 @@ module snake(
 							moveway = 2'b01;
 					else if(direction[2] && moveway != 2'b01)
 							moveway = 2'b10;
-							
+					
+					
+			
 					if(moveway == 2'b11) // right
 						begin
 							status[snakex[0]][snakey[0]] = 1'b1;
@@ -189,6 +206,8 @@ module snake(
 endmodule
 
 
+
+
 module divfreq(input clk, output reg clk_div);
 	reg[24:0] count;
 	always@(posedge clk)
@@ -217,3 +236,48 @@ module divfreq_mv(input clk, output reg clk_mv);
 		end
 endmodule
 
+module BCD2Seg(
+	input A, B, C, D,
+	input CLK_div,
+	output reg a, b, c, d, e, f, g,
+	output reg COM3, COM4
+	);
+	
+	reg cnt;
+
+	always @({A, B, C, D})
+	case ({A, B, C, D})
+		4'b0000: {a, b, c, d, e, f, g}= 7'b0000001;
+		4'b0001: {a, b, c, d, e, f, g}= 7'b1001111;
+		4'b0010: {a, b, c, d, e, f, g}= 7'b0010010;
+		4'b0011: {a, b, c, d, e, f, g}= 7'b0000110;
+		4'b0100: {a, b, c, d, e, f, g}= 7'b1001100;
+		4'b0101: {a, b, c, d, e, f, g}= 7'b0100100;
+		4'b0110: {a, b, c, d, e, f, g}= 7'b0100000;
+		4'b0111: {a, b, c, d, e, f, g}= 7'b0001111;
+		4'b1000: {a, b, c, d, e, f, g}= 7'b0000000;
+		4'b1001: {a, b, c, d, e, f, g}= 7'b0000100;
+		default: {a, b, c, d, e, f, g}= 7'b0000001;
+	endcase
+	
+	always @(CLK_div)
+		begin
+			cnt = ~cnt;
+			if (cnt == 1'b1)
+				begin
+					COM3 = 1'b0;
+					COM4 = 1'b0;
+
+				end
+			else
+				begin
+					COM3 = 1'b0;
+					COM4 = 1'b0;
+
+				end
+				
+
+		end
+		
+		
+endmodule

@@ -1,5 +1,5 @@
 Analysis & Synthesis report for snake
-Mon Jan 06 18:12:21 2020
+Mon Jan 06 22:25:17 2020
 Quartus II 64-Bit Version 13.1.0 Build 162 10/23/2013 SJ Web Edition
 
 
@@ -13,14 +13,19 @@ Quartus II 64-Bit Version 13.1.0 Build 162 10/23/2013 SJ Web Edition
   5. Analysis & Synthesis Source Files Read
   6. Analysis & Synthesis Resource Usage Summary
   7. Analysis & Synthesis Resource Utilization by Entity
-  8. State Machine - |snake|moveway
-  9. Registers Removed During Synthesis
- 10. Removed Registers Triggering Further Register Optimizations
- 11. General Register Statistics
- 12. Inverted Register Statistics
- 13. Multiplexer Restructuring Statistics (Restructuring Performed)
- 14. Elapsed Time Per Partition
- 15. Analysis & Synthesis Messages
+  8. Analysis & Synthesis DSP Block Usage Summary
+  9. State Machine - |snake|moveway
+ 10. Registers Removed During Synthesis
+ 11. Removed Registers Triggering Further Register Optimizations
+ 12. General Register Statistics
+ 13. Inverted Register Statistics
+ 14. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 15. Parameter Settings for Inferred Entity Instance: lpm_mult:Mult1
+ 16. Parameter Settings for Inferred Entity Instance: lpm_mult:Mult0
+ 17. lpm_mult Parameter Settings by Entity Instance
+ 18. Elapsed Time Per Partition
+ 19. Analysis & Synthesis Messages
+ 20. Analysis & Synthesis Suppressed Messages
 
 
 
@@ -46,19 +51,19 @@ applicable agreement for further details.
 +---------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                    ;
 +------------------------------------+--------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Mon Jan 06 18:12:21 2020      ;
+; Analysis & Synthesis Status        ; Successful - Mon Jan 06 22:25:17 2020      ;
 ; Quartus II 64-Bit Version          ; 13.1.0 Build 162 10/23/2013 SJ Web Edition ;
 ; Revision Name                      ; snake                                      ;
 ; Top-level Entity Name              ; snake                                      ;
 ; Family                             ; Cyclone III                                ;
-; Total logic elements               ; 688                                        ;
-;     Total combinational functions  ; 686                                        ;
-;     Dedicated logic registers      ; 337                                        ;
-; Total registers                    ; 337                                        ;
-; Total pins                         ; 34                                         ;
+; Total logic elements               ; 1,010                                      ;
+;     Total combinational functions  ; 1,008                                      ;
+;     Dedicated logic registers      ; 541                                        ;
+; Total registers                    ; 541                                        ;
+; Total pins                         ; 43                                         ;
 ; Total virtual pins                 ; 0                                          ;
 ; Total memory bits                  ; 0                                          ;
-; Embedded Multiplier 9-bit elements ; 0                                          ;
+; Embedded Multiplier 9-bit elements ; 12                                         ;
 ; Total PLLs                         ; 0                                          ;
 +------------------------------------+--------------------------------------------+
 
@@ -151,24 +156,39 @@ applicable agreement for further details.
 +----------------------------------------------------------------------------+--------------------+--------------------+
 
 
-Parallel compilation was disabled, but you have multiple processors available. Enable parallel compilation to reduce compilation time.
-+-------------------------------------+
-; Parallel Compilation                ;
-+----------------------------+--------+
-; Processors                 ; Number ;
-+----------------------------+--------+
-; Number detected on machine ; 12     ;
-; Maximum allowed            ; 1      ;
-+----------------------------+--------+
++------------------------------------------+
+; Parallel Compilation                     ;
++----------------------------+-------------+
+; Processors                 ; Number      ;
++----------------------------+-------------+
+; Number detected on machine ; 8           ;
+; Maximum allowed            ; 4           ;
+;                            ;             ;
+; Average used               ; 1.00        ;
+; Maximum used               ; 4           ;
+;                            ;             ;
+; Usage by Processor         ; % Time Used ;
+;     Processor 1            ; 100.0%      ;
+;     Processors 2-4         ; < 0.1%      ;
+;     Processors 5-8         ;   0.0%      ;
++----------------------------+-------------+
 
 
-+---------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Source Files Read                                                                                    ;
-+----------------------------------+-----------------+------------------------+-----------------------------------+---------+
-; File Name with User-Entered Path ; Used in Netlist ; File Type              ; File Name with Absolute Path      ; Library ;
-+----------------------------------+-----------------+------------------------+-----------------------------------+---------+
-; snake.v                          ; yes             ; User Verilog HDL File  ; D:/FPGA-final/repos/snake/snake.v ;         ;
-+----------------------------------+-----------------+------------------------+-----------------------------------+---------+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                                                   ;
++----------------------------------+-----------------+------------------------------+--------------------------------------------------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type                    ; File Name with Absolute Path                                                               ; Library ;
++----------------------------------+-----------------+------------------------------+--------------------------------------------------------------------------------------------+---------+
+; snake.v                          ; yes             ; User Verilog HDL File        ; C:/Users/jiazheng/Sync/ncnu/class/DigitalLogic/FPGA-Snake/FPGA-Snake/snake/snake.v         ;         ;
+; lpm_mult.tdf                     ; yes             ; Megafunction                 ; c:/altera/13.1/quartus/libraries/megafunctions/lpm_mult.tdf                                ;         ;
+; aglobal131.inc                   ; yes             ; Megafunction                 ; c:/altera/13.1/quartus/libraries/megafunctions/aglobal131.inc                              ;         ;
+; lpm_add_sub.inc                  ; yes             ; Megafunction                 ; c:/altera/13.1/quartus/libraries/megafunctions/lpm_add_sub.inc                             ;         ;
+; multcore.inc                     ; yes             ; Megafunction                 ; c:/altera/13.1/quartus/libraries/megafunctions/multcore.inc                                ;         ;
+; bypassff.inc                     ; yes             ; Megafunction                 ; c:/altera/13.1/quartus/libraries/megafunctions/bypassff.inc                                ;         ;
+; altshift.inc                     ; yes             ; Megafunction                 ; c:/altera/13.1/quartus/libraries/megafunctions/altshift.inc                                ;         ;
+; db/mult_b8t.tdf                  ; yes             ; Auto-Generated Megafunction  ; C:/Users/jiazheng/Sync/ncnu/class/DigitalLogic/FPGA-Snake/FPGA-Snake/snake/db/mult_b8t.tdf ;         ;
+; db/mult_d8t.tdf                  ; yes             ; Auto-Generated Megafunction  ; C:/Users/jiazheng/Sync/ncnu/class/DigitalLogic/FPGA-Snake/FPGA-Snake/snake/db/mult_d8t.tdf ;         ;
++----------------------------------+-----------------+------------------------------+--------------------------------------------------------------------------------------------+---------+
 
 
 +--------------------------------------------------------------------+
@@ -176,41 +196,64 @@ Parallel compilation was disabled, but you have multiple processors available. E
 +---------------------------------------------+----------------------+
 ; Resource                                    ; Usage                ;
 +---------------------------------------------+----------------------+
-; Estimated Total logic elements              ; 688                  ;
+; Estimated Total logic elements              ; 1,010                ;
 ;                                             ;                      ;
-; Total combinational functions               ; 686                  ;
+; Total combinational functions               ; 1008                 ;
 ; Logic element usage by number of LUT inputs ;                      ;
-;     -- 4 input functions                    ; 334                  ;
-;     -- 3 input functions                    ; 118                  ;
-;     -- <=2 input functions                  ; 234                  ;
+;     -- 4 input functions                    ; 405                  ;
+;     -- 3 input functions                    ; 187                  ;
+;     -- <=2 input functions                  ; 416                  ;
 ;                                             ;                      ;
 ; Logic elements by mode                      ;                      ;
-;     -- normal mode                          ; 534                  ;
-;     -- arithmetic mode                      ; 152                  ;
+;     -- normal mode                          ; 742                  ;
+;     -- arithmetic mode                      ; 266                  ;
 ;                                             ;                      ;
-; Total registers                             ; 337                  ;
-;     -- Dedicated logic registers            ; 337                  ;
+; Total registers                             ; 541                  ;
+;     -- Dedicated logic registers            ; 541                  ;
 ;     -- I/O registers                        ; 0                    ;
 ;                                             ;                      ;
-; I/O pins                                    ; 34                   ;
-; Embedded Multiplier 9-bit elements          ; 0                    ;
+; I/O pins                                    ; 43                   ;
+; Embedded Multiplier 9-bit elements          ; 12                   ;
 ; Maximum fan-out node                        ; divfreq_mv:F1|clk_mv ;
-; Maximum fan-out                             ; 261                  ;
-; Total fan-out                               ; 3122                 ;
-; Average fan-out                             ; 2.86                 ;
+; Maximum fan-out                             ; 457                  ;
+; Total fan-out                               ; 4702                 ;
+; Average fan-out                             ; 2.85                 ;
 +---------------------------------------------+----------------------+
 
 
-+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Resource Utilization by Entity                                                                                                                          ;
-+----------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+----------------------+--------------+
-; Compilation Hierarchy Node ; LC Combinationals ; LC Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name  ; Library Name ;
-+----------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+----------------------+--------------+
-; |snake                     ; 686 (602)         ; 337 (274)    ; 0           ; 0            ; 0       ; 0         ; 34   ; 0            ; |snake               ; work         ;
-;    |divfreq:F0|            ; 35 (35)           ; 26 (26)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |snake|divfreq:F0    ; work         ;
-;    |divfreq_mv:F1|         ; 49 (49)           ; 37 (37)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |snake|divfreq_mv:F1 ; work         ;
-+----------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+----------------------+--------------+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                        ;
++---------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+-----------------------------------------------+--------------+
+; Compilation Hierarchy Node      ; LC Combinationals ; LC Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                           ; Library Name ;
++---------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+-----------------------------------------------+--------------+
+; |snake                          ; 1008 (861)        ; 541 (478)    ; 0           ; 12           ; 0       ; 6         ; 43   ; 0            ; |snake                                        ; work         ;
+;    |BCD2Seg:bcd|                ; 7 (7)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |snake|BCD2Seg:bcd                            ; work         ;
+;    |divfreq:F0|                 ; 35 (35)           ; 26 (26)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |snake|divfreq:F0                             ; work         ;
+;    |divfreq_mv:F1|              ; 49 (49)           ; 37 (37)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |snake|divfreq_mv:F1                          ; work         ;
+;    |lpm_mult:Mult0|             ; 28 (0)            ; 0 (0)        ; 0           ; 6            ; 0       ; 3         ; 0    ; 0            ; |snake|lpm_mult:Mult0                         ; work         ;
+;       |mult_d8t:auto_generated| ; 28 (28)           ; 0 (0)        ; 0           ; 6            ; 0       ; 3         ; 0    ; 0            ; |snake|lpm_mult:Mult0|mult_d8t:auto_generated ; work         ;
+;    |lpm_mult:Mult1|             ; 28 (0)            ; 0 (0)        ; 0           ; 6            ; 0       ; 3         ; 0    ; 0            ; |snake|lpm_mult:Mult1                         ; work         ;
+;       |mult_b8t:auto_generated| ; 28 (28)           ; 0 (0)        ; 0           ; 6            ; 0       ; 3         ; 0    ; 0            ; |snake|lpm_mult:Mult1|mult_b8t:auto_generated ; work         ;
++---------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+-----------------------------------------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
+
+
++-----------------------------------------------------+
+; Analysis & Synthesis DSP Block Usage Summary        ;
++---------------------------------------+-------------+
+; Statistic                             ; Number Used ;
++---------------------------------------+-------------+
+; Simple Multipliers (9-bit)            ; 0           ;
+; Simple Multipliers (18-bit)           ; 6           ;
+; Embedded Multiplier Blocks            ; --          ;
+; Embedded Multiplier 9-bit elements    ; 12          ;
+; Signed Embedded Multipliers           ; 0           ;
+; Unsigned Embedded Multipliers         ; 2           ;
+; Mixed Sign Embedded Multipliers       ; 4           ;
+; Variable Sign Embedded Multipliers    ; 0           ;
+; Dedicated Input Shift Register Chains ; 0           ;
++---------------------------------------+-------------+
+Note: number of Embedded Multiplier Blocks used is only available after a successful fit.
 
 
 Encoding Type:  One-Hot
@@ -232,8 +275,9 @@ Encoding Type:  One-Hot
 ; Register name                            ; Reason for Removal                     ;
 +------------------------------------------+----------------------------------------+
 ; comm[3]~reg0                             ; Stuck at VCC due to stuck port data_in ;
-; body[0,1]                                ; Stuck at VCC due to stuck port data_in ;
-; body[2..5]                               ; Stuck at GND due to stuck port data_in ;
+; body[0,1]                                ; Stuck at GND due to stuck port data_in ;
+; body[2]                                  ; Stuck at VCC due to stuck port data_in ;
+; body[3..5]                               ; Stuck at GND due to stuck port data_in ;
 ; snakex[46][10]                           ; Merged with snakex[46][0]              ;
 ; snakex[46][11]                           ; Merged with snakex[46][0]              ;
 ; snakex[46][12]                           ; Merged with snakex[46][0]              ;
@@ -3259,38 +3303,6 @@ Encoding Type:  One-Hot
 ; snakey[16][8]                            ; Merged with snakex[16][0]              ;
 ; snakey[16][9]                            ; Merged with snakex[16][0]              ;
 ; snakex[63][0]                            ; Stuck at GND due to stuck port data_in ;
-; snakey[3][0]                             ; Stuck at GND due to stuck port data_in ;
-; snakey[3][1]                             ; Stuck at GND due to stuck port data_in ;
-; snakey[3][2]                             ; Stuck at GND due to stuck port data_in ;
-; snakey[3][3]                             ; Stuck at GND due to stuck port data_in ;
-; snakey[3][4]                             ; Stuck at GND due to stuck port data_in ;
-; snakey[3][5]                             ; Stuck at GND due to stuck port data_in ;
-; snakey[3][6]                             ; Stuck at GND due to stuck port data_in ;
-; snakey[3][7]                             ; Stuck at GND due to stuck port data_in ;
-; snakey[3][8]                             ; Stuck at GND due to stuck port data_in ;
-; snakey[3][9]                             ; Stuck at GND due to stuck port data_in ;
-; snakey[3][10]                            ; Stuck at GND due to stuck port data_in ;
-; snakey[3][11]                            ; Stuck at GND due to stuck port data_in ;
-; snakey[3][12]                            ; Stuck at GND due to stuck port data_in ;
-; snakey[3][13]                            ; Stuck at GND due to stuck port data_in ;
-; snakey[3][14]                            ; Stuck at GND due to stuck port data_in ;
-; snakey[3][15]                            ; Stuck at GND due to stuck port data_in ;
-; snakey[3][16]                            ; Stuck at GND due to stuck port data_in ;
-; snakey[3][17]                            ; Stuck at GND due to stuck port data_in ;
-; snakey[3][18]                            ; Stuck at GND due to stuck port data_in ;
-; snakey[3][19]                            ; Stuck at GND due to stuck port data_in ;
-; snakey[3][20]                            ; Stuck at GND due to stuck port data_in ;
-; snakey[3][21]                            ; Stuck at GND due to stuck port data_in ;
-; snakey[3][22]                            ; Stuck at GND due to stuck port data_in ;
-; snakey[3][23]                            ; Stuck at GND due to stuck port data_in ;
-; snakey[3][24]                            ; Stuck at GND due to stuck port data_in ;
-; snakey[3][25]                            ; Stuck at GND due to stuck port data_in ;
-; snakey[3][26]                            ; Stuck at GND due to stuck port data_in ;
-; snakey[3][27]                            ; Stuck at GND due to stuck port data_in ;
-; snakey[3][28]                            ; Stuck at GND due to stuck port data_in ;
-; snakey[3][29]                            ; Stuck at GND due to stuck port data_in ;
-; snakey[3][30]                            ; Stuck at GND due to stuck port data_in ;
-; snakey[3][31]                            ; Stuck at GND due to stuck port data_in ;
 ; snakey[4][0]                             ; Stuck at GND due to stuck port data_in ;
 ; snakey[4][1]                             ; Stuck at GND due to stuck port data_in ;
 ; snakey[4][2]                             ; Stuck at GND due to stuck port data_in ;
@@ -3675,38 +3687,6 @@ Encoding Type:  One-Hot
 ; snakey[15][29]                           ; Stuck at GND due to stuck port data_in ;
 ; snakey[15][30]                           ; Stuck at GND due to stuck port data_in ;
 ; snakey[15][31]                           ; Stuck at GND due to stuck port data_in ;
-; snakex[3][0]                             ; Stuck at GND due to stuck port data_in ;
-; snakex[3][1]                             ; Stuck at GND due to stuck port data_in ;
-; snakex[3][2]                             ; Stuck at GND due to stuck port data_in ;
-; snakex[3][3]                             ; Stuck at GND due to stuck port data_in ;
-; snakex[3][4]                             ; Stuck at GND due to stuck port data_in ;
-; snakex[3][5]                             ; Stuck at GND due to stuck port data_in ;
-; snakex[3][6]                             ; Stuck at GND due to stuck port data_in ;
-; snakex[3][7]                             ; Stuck at GND due to stuck port data_in ;
-; snakex[3][8]                             ; Stuck at GND due to stuck port data_in ;
-; snakex[3][9]                             ; Stuck at GND due to stuck port data_in ;
-; snakex[3][10]                            ; Stuck at GND due to stuck port data_in ;
-; snakex[3][11]                            ; Stuck at GND due to stuck port data_in ;
-; snakex[3][12]                            ; Stuck at GND due to stuck port data_in ;
-; snakex[3][13]                            ; Stuck at GND due to stuck port data_in ;
-; snakex[3][14]                            ; Stuck at GND due to stuck port data_in ;
-; snakex[3][15]                            ; Stuck at GND due to stuck port data_in ;
-; snakex[3][16]                            ; Stuck at GND due to stuck port data_in ;
-; snakex[3][17]                            ; Stuck at GND due to stuck port data_in ;
-; snakex[3][18]                            ; Stuck at GND due to stuck port data_in ;
-; snakex[3][19]                            ; Stuck at GND due to stuck port data_in ;
-; snakex[3][20]                            ; Stuck at GND due to stuck port data_in ;
-; snakex[3][21]                            ; Stuck at GND due to stuck port data_in ;
-; snakex[3][22]                            ; Stuck at GND due to stuck port data_in ;
-; snakex[3][23]                            ; Stuck at GND due to stuck port data_in ;
-; snakex[3][24]                            ; Stuck at GND due to stuck port data_in ;
-; snakex[3][25]                            ; Stuck at GND due to stuck port data_in ;
-; snakex[3][26]                            ; Stuck at GND due to stuck port data_in ;
-; snakex[3][27]                            ; Stuck at GND due to stuck port data_in ;
-; snakex[3][28]                            ; Stuck at GND due to stuck port data_in ;
-; snakex[3][29]                            ; Stuck at GND due to stuck port data_in ;
-; snakex[3][30]                            ; Stuck at GND due to stuck port data_in ;
-; snakex[3][31]                            ; Stuck at GND due to stuck port data_in ;
 ; snakex[4][0]                             ; Stuck at GND due to stuck port data_in ;
 ; snakex[4][1]                             ; Stuck at GND due to stuck port data_in ;
 ; snakex[4][2]                             ; Stuck at GND due to stuck port data_in ;
@@ -4140,7 +4120,7 @@ Encoding Type:  One-Hot
 ; snakex[62][0]                            ; Stuck at GND due to stuck port data_in ;
 ; moveway~6                                ; Lost fanout                            ;
 ; moveway~7                                ; Lost fanout                            ;
-; Total Number of Removed Registers = 3913 ;                                        ;
+; Total Number of Removed Registers = 3849 ;                                        ;
 +------------------------------------------+----------------------------------------+
 
 
@@ -4149,7 +4129,7 @@ Encoding Type:  One-Hot
 +---------------+---------------------------+------------------------------------------------------------+
 ; Register name ; Reason for Removal        ; Registers Removed due to This Register                     ;
 +---------------+---------------------------+------------------------------------------------------------+
-; body[0]       ; Stuck at VCC              ; snakex[58][0], snakex[59][0], snakex[60][0], snakex[61][0] ;
+; body[0]       ; Stuck at GND              ; snakex[58][0], snakex[59][0], snakex[60][0], snakex[61][0] ;
 ;               ; due to stuck port data_in ;                                                            ;
 ; snakex[63][0] ; Stuck at GND              ; snakex[62][0]                                              ;
 ;               ; due to stuck port data_in ;                                                            ;
@@ -4161,31 +4141,41 @@ Encoding Type:  One-Hot
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 337   ;
+; Total registers                              ; 541   ;
 ; Number of registers using Synchronous Clear  ; 61    ;
 ; Number of registers using Synchronous Load   ; 61    ;
 ; Number of registers using Asynchronous Clear ; 0     ;
 ; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 128   ;
+; Number of registers using Clock Enable       ; 320   ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
 
 
-+--------------------------------------------------+
-; Inverted Register Statistics                     ;
-+----------------------------------------+---------+
-; Inverted Register                      ; Fan out ;
-+----------------------------------------+---------+
-; data_g[0]~reg0                         ; 1       ;
-; data_g[1]~reg0                         ; 1       ;
-; data_g[2]~reg0                         ; 1       ;
-; data_g[3]~reg0                         ; 1       ;
-; data_g[4]~reg0                         ; 1       ;
-; data_g[5]~reg0                         ; 1       ;
-; data_g[6]~reg0                         ; 1       ;
-; data_g[7]~reg0                         ; 1       ;
-; Total number of inverted registers = 8 ;         ;
-+----------------------------------------+---------+
++---------------------------------------------------+
+; Inverted Register Statistics                      ;
++-----------------------------------------+---------+
+; Inverted Register                       ; Fan out ;
++-----------------------------------------+---------+
+; data_r[0]~reg0                          ; 1       ;
+; data_r[1]~reg0                          ; 1       ;
+; data_r[2]~reg0                          ; 1       ;
+; data_r[3]~reg0                          ; 1       ;
+; data_r[4]~reg0                          ; 1       ;
+; data_r[5]~reg0                          ; 1       ;
+; data_r[6]~reg0                          ; 1       ;
+; data_r[7]~reg0                          ; 1       ;
+; data_g[0]~reg0                          ; 1       ;
+; data_g[1]~reg0                          ; 1       ;
+; data_g[2]~reg0                          ; 1       ;
+; data_g[3]~reg0                          ; 1       ;
+; data_g[4]~reg0                          ; 1       ;
+; data_g[5]~reg0                          ; 1       ;
+; data_g[6]~reg0                          ; 1       ;
+; data_g[7]~reg0                          ; 1       ;
+; randomseedx[0]                          ; 3       ;
+; randomseedy[0]                          ; 3       ;
+; Total number of inverted registers = 18 ;         ;
++-----------------------------------------+---------+
 
 
 +------------------------------------------------------------------------------------------------------------------------------------------+
@@ -4193,12 +4183,113 @@ Encoding Type:  One-Hot
 +--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------+
 ; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------+
-; 6:1                ; 128 bits  ; 512 LEs       ; 128 LEs              ; 384 LEs                ; Yes        ; |snake|snakey[0][29]       ;
-; 8:1                ; 8 bits    ; 40 LEs        ; 40 LEs               ; 0 LEs                  ; Yes        ; |snake|data_g[7]~reg0      ;
+; 6:1                ; 192 bits  ; 768 LEs       ; 192 LEs              ; 576 LEs                ; Yes        ; |snake|snakex[1][26]       ;
+; 8:1                ; 16 bits   ; 80 LEs        ; 80 LEs               ; 0 LEs                  ; Yes        ; |snake|data_g[4]~reg0      ;
 ; 3:1                ; 32 bits   ; 64 LEs        ; 64 LEs               ; 0 LEs                  ; No         ; |snake|snakex              ;
 ; 5:1                ; 4 bits    ; 12 LEs        ; 12 LEs               ; 0 LEs                  ; No         ; |snake|moveway             ;
 ; 5:1                ; 32 bits   ; 96 LEs        ; 64 LEs               ; 32 LEs                 ; No         ; |snake|snakey              ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------+
+
+
++------------------------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: lpm_mult:Mult1                    ;
++------------------------------------------------+-------------+---------------------+
+; Parameter Name                                 ; Value       ; Type                ;
++------------------------------------------------+-------------+---------------------+
+; AUTO_CARRY_CHAINS                              ; ON          ; AUTO_CARRY          ;
+; IGNORE_CARRY_BUFFERS                           ; OFF         ; IGNORE_CARRY        ;
+; AUTO_CASCADE_CHAINS                            ; ON          ; AUTO_CASCADE        ;
+; IGNORE_CASCADE_BUFFERS                         ; OFF         ; IGNORE_CASCADE      ;
+; LPM_WIDTHA                                     ; 32          ; Untyped             ;
+; LPM_WIDTHB                                     ; 30          ; Untyped             ;
+; LPM_WIDTHP                                     ; 62          ; Untyped             ;
+; LPM_WIDTHR                                     ; 62          ; Untyped             ;
+; LPM_WIDTHS                                     ; 1           ; Untyped             ;
+; LPM_REPRESENTATION                             ; SIGNED      ; Untyped             ;
+; LPM_PIPELINE                                   ; 0           ; Untyped             ;
+; LATENCY                                        ; 0           ; Untyped             ;
+; INPUT_A_IS_CONSTANT                            ; NO          ; Untyped             ;
+; INPUT_B_IS_CONSTANT                            ; YES         ; Untyped             ;
+; USE_EAB                                        ; OFF         ; Untyped             ;
+; MAXIMIZE_SPEED                                 ; 5           ; Untyped             ;
+; DEVICE_FAMILY                                  ; Cyclone III ; Untyped             ;
+; CARRY_CHAIN                                    ; MANUAL      ; Untyped             ;
+; APEX20K_TECHNOLOGY_MAPPER                      ; LUT         ; TECH_MAPPER_APEX20K ;
+; DEDICATED_MULTIPLIER_CIRCUITRY                 ; AUTO        ; Untyped             ;
+; DEDICATED_MULTIPLIER_MIN_INPUT_WIDTH_FOR_AUTO  ; 0           ; Untyped             ;
+; DEDICATED_MULTIPLIER_MIN_OUTPUT_WIDTH_FOR_AUTO ; 0           ; Untyped             ;
+; CBXI_PARAMETER                                 ; mult_b8t    ; Untyped             ;
+; INPUT_A_FIXED_VALUE                            ; Bx          ; Untyped             ;
+; INPUT_B_FIXED_VALUE                            ; Bx          ; Untyped             ;
+; USE_AHDL_IMPLEMENTATION                        ; OFF         ; Untyped             ;
++------------------------------------------------+-------------+---------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: lpm_mult:Mult0                    ;
++------------------------------------------------+-------------+---------------------+
+; Parameter Name                                 ; Value       ; Type                ;
++------------------------------------------------+-------------+---------------------+
+; AUTO_CARRY_CHAINS                              ; ON          ; AUTO_CARRY          ;
+; IGNORE_CARRY_BUFFERS                           ; OFF         ; IGNORE_CARRY        ;
+; AUTO_CASCADE_CHAINS                            ; ON          ; AUTO_CASCADE        ;
+; IGNORE_CASCADE_BUFFERS                         ; OFF         ; IGNORE_CASCADE      ;
+; LPM_WIDTHA                                     ; 32          ; Untyped             ;
+; LPM_WIDTHB                                     ; 31          ; Untyped             ;
+; LPM_WIDTHP                                     ; 63          ; Untyped             ;
+; LPM_WIDTHR                                     ; 63          ; Untyped             ;
+; LPM_WIDTHS                                     ; 1           ; Untyped             ;
+; LPM_REPRESENTATION                             ; SIGNED      ; Untyped             ;
+; LPM_PIPELINE                                   ; 0           ; Untyped             ;
+; LATENCY                                        ; 0           ; Untyped             ;
+; INPUT_A_IS_CONSTANT                            ; NO          ; Untyped             ;
+; INPUT_B_IS_CONSTANT                            ; YES         ; Untyped             ;
+; USE_EAB                                        ; OFF         ; Untyped             ;
+; MAXIMIZE_SPEED                                 ; 5           ; Untyped             ;
+; DEVICE_FAMILY                                  ; Cyclone III ; Untyped             ;
+; CARRY_CHAIN                                    ; MANUAL      ; Untyped             ;
+; APEX20K_TECHNOLOGY_MAPPER                      ; LUT         ; TECH_MAPPER_APEX20K ;
+; DEDICATED_MULTIPLIER_CIRCUITRY                 ; AUTO        ; Untyped             ;
+; DEDICATED_MULTIPLIER_MIN_INPUT_WIDTH_FOR_AUTO  ; 0           ; Untyped             ;
+; DEDICATED_MULTIPLIER_MIN_OUTPUT_WIDTH_FOR_AUTO ; 0           ; Untyped             ;
+; CBXI_PARAMETER                                 ; mult_d8t    ; Untyped             ;
+; INPUT_A_FIXED_VALUE                            ; Bx          ; Untyped             ;
+; INPUT_B_FIXED_VALUE                            ; Bx          ; Untyped             ;
+; USE_AHDL_IMPLEMENTATION                        ; OFF         ; Untyped             ;
++------------------------------------------------+-------------+---------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------+
+; lpm_mult Parameter Settings by Entity Instance         ;
++---------------------------------------+----------------+
+; Name                                  ; Value          ;
++---------------------------------------+----------------+
+; Number of entity instances            ; 2              ;
+; Entity Instance                       ; lpm_mult:Mult1 ;
+;     -- LPM_WIDTHA                     ; 32             ;
+;     -- LPM_WIDTHB                     ; 30             ;
+;     -- LPM_WIDTHP                     ; 62             ;
+;     -- LPM_REPRESENTATION             ; SIGNED         ;
+;     -- INPUT_A_IS_CONSTANT            ; NO             ;
+;     -- INPUT_B_IS_CONSTANT            ; YES            ;
+;     -- USE_EAB                        ; OFF            ;
+;     -- DEDICATED_MULTIPLIER_CIRCUITRY ; AUTO           ;
+;     -- INPUT_A_FIXED_VALUE            ; Bx             ;
+;     -- INPUT_B_FIXED_VALUE            ; Bx             ;
+; Entity Instance                       ; lpm_mult:Mult0 ;
+;     -- LPM_WIDTHA                     ; 32             ;
+;     -- LPM_WIDTHB                     ; 31             ;
+;     -- LPM_WIDTHP                     ; 63             ;
+;     -- LPM_REPRESENTATION             ; SIGNED         ;
+;     -- INPUT_A_IS_CONSTANT            ; NO             ;
+;     -- INPUT_B_IS_CONSTANT            ; YES            ;
+;     -- USE_EAB                        ; OFF            ;
+;     -- DEDICATED_MULTIPLIER_CIRCUITRY ; AUTO           ;
+;     -- INPUT_A_FIXED_VALUE            ; Bx             ;
+;     -- INPUT_B_FIXED_VALUE            ; Bx             ;
++---------------------------------------+----------------+
 
 
 +-------------------------------+
@@ -4206,7 +4297,7 @@ Encoding Type:  One-Hot
 +----------------+--------------+
 ; Partition Name ; Elapsed Time ;
 +----------------+--------------+
-; Top            ; 00:00:14     ;
+; Top            ; 00:00:17     ;
 +----------------+--------------+
 
 
@@ -4216,33 +4307,66 @@ Encoding Type:  One-Hot
 Info: *******************************************************************
 Info: Running Quartus II 64-Bit Analysis & Synthesis
     Info: Version 13.1.0 Build 162 10/23/2013 SJ Web Edition
-    Info: Processing started: Mon Jan 06 18:11:43 2020
+    Info: Processing started: Mon Jan 06 22:24:31 2020
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off snake -c snake
-Warning (20028): Parallel compilation is not licensed and has been disabled
-Info (12021): Found 3 design units, including 3 entities, in source file snake.v
+Info (11104): Parallel Compilation has detected 8 hyper-threaded processors. However, the extra hyper-threaded processors will not be used by default. Parallel Compilation will use 4 of the 4 physical processors detected instead.
+Info (12021): Found 4 design units, including 4 entities, in source file snake.v
     Info (12023): Found entity 1: snake
     Info (12023): Found entity 2: divfreq
     Info (12023): Found entity 3: divfreq_mv
-Warning (10236): Verilog HDL Implicit Net warning at snake.v(44): created implicit net for "clk_div"
-Warning (10236): Verilog HDL Implicit Net warning at snake.v(45): created implicit net for "clk_mv"
+    Info (12023): Found entity 4: BCD2Seg
+Warning (10236): Verilog HDL Implicit Net warning at snake.v(54): created implicit net for "clk_div"
+Warning (10236): Verilog HDL Implicit Net warning at snake.v(55): created implicit net for "clk_mv"
 Info (12127): Elaborating entity "snake" for the top level hierarchy
-Warning (10036): Verilog HDL or VHDL warning at snake.v(8): object "tmpx" assigned a value but never read
-Warning (10036): Verilog HDL or VHDL warning at snake.v(8): object "tmpy" assigned a value but never read
-Warning (10036): Verilog HDL or VHDL warning at snake.v(13): object "index" assigned a value but never read
-Warning (10855): Verilog HDL warning at snake.v(16): initial value for variable snakex should be constant
-Warning (10855): Verilog HDL warning at snake.v(16): initial value for variable snakey should be constant
-Warning (10230): Verilog HDL assignment warning at snake.v(52): truncated value with size 32 to match size of target (3)
+Warning (10036): Verilog HDL or VHDL warning at snake.v(10): object "tmpx" assigned a value but never read
+Warning (10036): Verilog HDL or VHDL warning at snake.v(10): object "tmpy" assigned a value but never read
+Warning (10036): Verilog HDL or VHDL warning at snake.v(15): object "index" assigned a value but never read
+Warning (10855): Verilog HDL warning at snake.v(22): initial value for variable snakex should be constant
+Warning (10855): Verilog HDL warning at snake.v(22): initial value for variable snakey should be constant
+Warning (10230): Verilog HDL assignment warning at snake.v(69): truncated value with size 32 to match size of target (3)
 Info (12128): Elaborating entity "divfreq" for hierarchy "divfreq:F0"
 Info (12128): Elaborating entity "divfreq_mv" for hierarchy "divfreq_mv:F1"
+Info (12128): Elaborating entity "BCD2Seg" for hierarchy "BCD2Seg:bcd"
+Warning (10235): Verilog HDL Always Construct warning at snake.v(265): variable "cnt" is read inside the Always Construct but isn't in the Always Construct's Event Control
+Warning (10755): Verilog HDL warning at snake.v(263): assignments to cnt create a combinational loop
+Info (278001): Inferred 2 megafunctions from design logic
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "Mult1"
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "Mult0"
+Info (12130): Elaborated megafunction instantiation "lpm_mult:Mult1"
+Info (12133): Instantiated megafunction "lpm_mult:Mult1" with the following parameter:
+    Info (12134): Parameter "LPM_WIDTHA" = "32"
+    Info (12134): Parameter "LPM_WIDTHB" = "30"
+    Info (12134): Parameter "LPM_WIDTHP" = "62"
+    Info (12134): Parameter "LPM_WIDTHR" = "62"
+    Info (12134): Parameter "LPM_WIDTHS" = "1"
+    Info (12134): Parameter "LPM_REPRESENTATION" = "SIGNED"
+    Info (12134): Parameter "INPUT_A_IS_CONSTANT" = "NO"
+    Info (12134): Parameter "INPUT_B_IS_CONSTANT" = "YES"
+    Info (12134): Parameter "MAXIMIZE_SPEED" = "5"
+Info (12021): Found 1 design units, including 1 entities, in source file db/mult_b8t.tdf
+    Info (12023): Found entity 1: mult_b8t
+Info (12130): Elaborated megafunction instantiation "lpm_mult:Mult0"
+Info (12133): Instantiated megafunction "lpm_mult:Mult0" with the following parameter:
+    Info (12134): Parameter "LPM_WIDTHA" = "32"
+    Info (12134): Parameter "LPM_WIDTHB" = "31"
+    Info (12134): Parameter "LPM_WIDTHP" = "63"
+    Info (12134): Parameter "LPM_WIDTHR" = "63"
+    Info (12134): Parameter "LPM_WIDTHS" = "1"
+    Info (12134): Parameter "LPM_REPRESENTATION" = "SIGNED"
+    Info (12134): Parameter "INPUT_A_IS_CONSTANT" = "NO"
+    Info (12134): Parameter "INPUT_B_IS_CONSTANT" = "YES"
+    Info (12134): Parameter "MAXIMIZE_SPEED" = "5"
+Info (12021): Found 1 design units, including 1 entities, in source file db/mult_d8t.tdf
+    Info (12023): Found entity 1: mult_d8t
+Warning (14284): Synthesized away the following node(s):
+    Warning (14285): Synthesized away the following DSP element node(s):
+        Warning (14320): Synthesized away node "lpm_mult:Mult0|mult_d8t:auto_generated|mac_mult7"
+        Warning (14320): Synthesized away node "lpm_mult:Mult0|mult_d8t:auto_generated|mac_out8"
+        Warning (14320): Synthesized away node "lpm_mult:Mult1|mult_b8t:auto_generated|mac_mult7"
+        Warning (14320): Synthesized away node "lpm_mult:Mult1|mult_b8t:auto_generated|mac_out8"
+Info (13014): Ignored 168 buffer(s)
+    Info (13019): Ignored 168 SOFT buffer(s)
 Warning (13024): Output pins are stuck at VCC or GND
-    Warning (13410): Pin "data_r[0]" is stuck at VCC
-    Warning (13410): Pin "data_r[1]" is stuck at VCC
-    Warning (13410): Pin "data_r[2]" is stuck at VCC
-    Warning (13410): Pin "data_r[3]" is stuck at VCC
-    Warning (13410): Pin "data_r[4]" is stuck at VCC
-    Warning (13410): Pin "data_r[5]" is stuck at VCC
-    Warning (13410): Pin "data_r[6]" is stuck at VCC
-    Warning (13410): Pin "data_r[7]" is stuck at VCC
     Warning (13410): Pin "data_b[0]" is stuck at VCC
     Warning (13410): Pin "data_b[1]" is stuck at VCC
     Warning (13410): Pin "data_b[2]" is stuck at VCC
@@ -4252,18 +4376,28 @@ Warning (13024): Output pins are stuck at VCC or GND
     Warning (13410): Pin "data_b[6]" is stuck at VCC
     Warning (13410): Pin "data_b[7]" is stuck at VCC
     Warning (13410): Pin "comm[3]" is stuck at VCC
+    Warning (13410): Pin "COM3" is stuck at GND
+    Warning (13410): Pin "COM4" is stuck at GND
 Info (286030): Timing-Driven Synthesis is running
 Info (17049): 2 registers lost all their fanouts during netlist optimizations.
+Info (144001): Generated suppressed messages file C:/Users/jiazheng/Sync/ncnu/class/DigitalLogic/FPGA-Snake/FPGA-Snake/snake/output_files/snake.map.smsg
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Info (21057): Implemented 724 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 1073 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 6 input pins
-    Info (21059): Implemented 28 output pins
-    Info (21061): Implemented 690 logic cells
-Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 27 warnings
-    Info: Peak virtual memory: 5636 megabytes
-    Info: Processing ended: Mon Jan 06 18:12:21 2020
-    Info: Elapsed time: 00:00:38
-    Info: Total CPU time (on all processors): 00:00:37
+    Info (21059): Implemented 37 output pins
+    Info (21061): Implemented 1018 logic cells
+    Info (21062): Implemented 12 DSP elements
+Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 28 warnings
+    Info: Peak virtual memory: 5639 megabytes
+    Info: Processing ended: Mon Jan 06 22:25:17 2020
+    Info: Elapsed time: 00:00:46
+    Info: Total CPU time (on all processors): 00:00:45
+
+
++------------------------------------------+
+; Analysis & Synthesis Suppressed Messages ;
++------------------------------------------+
+The suppressed messages can be found in C:/Users/jiazheng/Sync/ncnu/class/DigitalLogic/FPGA-Snake/FPGA-Snake/snake/output_files/snake.map.smsg.
 
 
