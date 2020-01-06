@@ -1,5 +1,5 @@
 Analysis & Synthesis report for snake
-Mon Jan 06 03:30:35 2020
+Mon Jan 06 13:34:04 2020
 Quartus II 64-Bit Version 13.1.0 Build 162 10/23/2013 SJ Web Edition
 
 
@@ -46,15 +46,15 @@ applicable agreement for further details.
 +---------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                    ;
 +------------------------------------+--------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Mon Jan 06 03:30:35 2020      ;
+; Analysis & Synthesis Status        ; Successful - Mon Jan 06 13:34:03 2020      ;
 ; Quartus II 64-Bit Version          ; 13.1.0 Build 162 10/23/2013 SJ Web Edition ;
 ; Revision Name                      ; snake                                      ;
 ; Top-level Entity Name              ; snake                                      ;
 ; Family                             ; Cyclone III                                ;
-; Total logic elements               ; 10,028                                     ;
-;     Total combinational functions  ; 6,091                                      ;
-;     Dedicated logic registers      ; 4,302                                      ;
-; Total registers                    ; 4302                                       ;
+; Total logic elements               ; 10,265                                     ;
+;     Total combinational functions  ; 6,296                                      ;
+;     Dedicated logic registers      ; 4,367                                      ;
+; Total registers                    ; 4367                                       ;
 ; Total pins                         ; 34                                         ;
 ; Total virtual pins                 ; 0                                          ;
 ; Total memory bits                  ; 0                                          ;
@@ -176,27 +176,27 @@ Parallel compilation was disabled, but you have multiple processors available. E
 +---------------------------------------------+----------------------+
 ; Resource                                    ; Usage                ;
 +---------------------------------------------+----------------------+
-; Estimated Total logic elements              ; 10,028               ;
+; Estimated Total logic elements              ; 10,265               ;
 ;                                             ;                      ;
-; Total combinational functions               ; 6091                 ;
+; Total combinational functions               ; 6296                 ;
 ; Logic element usage by number of LUT inputs ;                      ;
-;     -- 4 input functions                    ; 5705                 ;
-;     -- 3 input functions                    ; 138                  ;
-;     -- <=2 input functions                  ; 248                  ;
+;     -- 4 input functions                    ; 5864                 ;
+;     -- 3 input functions                    ; 202                  ;
+;     -- <=2 input functions                  ; 230                  ;
 ;                                             ;                      ;
 ; Logic elements by mode                      ;                      ;
-;     -- normal mode                          ; 5908                 ;
+;     -- normal mode                          ; 6113                 ;
 ;     -- arithmetic mode                      ; 183                  ;
 ;                                             ;                      ;
-; Total registers                             ; 4302                 ;
-;     -- Dedicated logic registers            ; 4302                 ;
+; Total registers                             ; 4367                 ;
+;     -- Dedicated logic registers            ; 4367                 ;
 ;     -- I/O registers                        ; 0                    ;
 ;                                             ;                      ;
 ; I/O pins                                    ; 34                   ;
 ; Embedded Multiplier 9-bit elements          ; 0                    ;
 ; Maximum fan-out node                        ; divfreq_mv:F1|clk_mv ;
-; Maximum fan-out                             ; 4226                 ;
-; Total fan-out                               ; 36684                ;
+; Maximum fan-out                             ; 4291                 ;
+; Total fan-out                               ; 37706                ;
 ; Average fan-out                             ; 3.51                 ;
 +---------------------------------------------+----------------------+
 
@@ -206,9 +206,9 @@ Parallel compilation was disabled, but you have multiple processors available. E
 +----------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+----------------------+--------------+
 ; Compilation Hierarchy Node ; LC Combinationals ; LC Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name  ; Library Name ;
 +----------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+----------------------+--------------+
-; |snake                     ; 6091 (6005)       ; 4302 (4239)  ; 0           ; 0            ; 0       ; 0         ; 34   ; 0            ; |snake               ; work         ;
+; |snake                     ; 6296 (6212)       ; 4367 (4304)  ; 0           ; 0            ; 0       ; 0         ; 34   ; 0            ; |snake               ; work         ;
 ;    |divfreq:F0|            ; 35 (35)           ; 26 (26)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |snake|divfreq:F0    ; work         ;
-;    |divfreq_mv:F1|         ; 51 (51)           ; 37 (37)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |snake|divfreq_mv:F1 ; work         ;
+;    |divfreq_mv:F1|         ; 49 (49)           ; 37 (37)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |snake|divfreq_mv:F1 ; work         ;
 +----------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+----------------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
 
@@ -234,23 +234,22 @@ Encoding Type:  One-Hot
 ; comm[3]~reg0                           ; Stuck at VCC due to stuck port data_in ;
 ; body[0,1]                              ; Stuck at VCC due to stuck port data_in ;
 ; body[2..7]                             ; Stuck at GND due to stuck port data_in ;
-; status[0][7]                           ; Stuck at GND due to stuck port data_in ;
-; status[1][7]                           ; Stuck at GND due to stuck port data_in ;
-; status[2][7]                           ; Stuck at GND due to stuck port data_in ;
+; status[1][0]                           ; Stuck at GND due to stuck port data_in ;
+; status[2][0]                           ; Stuck at GND due to stuck port data_in ;
 ; moveway~6                              ; Lost fanout                            ;
 ; moveway~7                              ; Lost fanout                            ;
-; Total Number of Removed Registers = 14 ;                                        ;
+; Total Number of Removed Registers = 13 ;                                        ;
 +----------------------------------------+----------------------------------------+
 
 
-+--------------------------------------------------------------------------------------+
-; Removed Registers Triggering Further Register Optimizations                          ;
-+---------------+---------------------------+------------------------------------------+
-; Register name ; Reason for Removal        ; Registers Removed due to This Register   ;
-+---------------+---------------------------+------------------------------------------+
-; body[0]       ; Stuck at VCC              ; status[0][7], status[1][7], status[2][7] ;
-;               ; due to stuck port data_in ;                                          ;
-+---------------+---------------------------+------------------------------------------+
++------------------------------------------------------------------------------------+
+; Removed Registers Triggering Further Register Optimizations                        ;
++---------------+---------------------------+----------------------------------------+
+; Register name ; Reason for Removal        ; Registers Removed due to This Register ;
++---------------+---------------------------+----------------------------------------+
+; body[0]       ; Stuck at VCC              ; status[1][0], status[2][0]             ;
+;               ; due to stuck port data_in ;                                        ;
++---------------+---------------------------+----------------------------------------+
 
 
 +------------------------------------------------------+
@@ -258,12 +257,12 @@ Encoding Type:  One-Hot
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 4302  ;
-; Number of registers using Synchronous Clear  ; 61    ;
+; Total registers                              ; 4367  ;
+; Number of registers using Synchronous Clear  ; 94    ;
 ; Number of registers using Synchronous Load   ; 32    ;
 ; Number of registers using Asynchronous Clear ; 0     ;
 ; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 4189  ;
+; Number of registers using Clock Enable       ; 4256  ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
 
@@ -290,79 +289,79 @@ Encoding Type:  One-Hot
 +--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------+
 ; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------+
-; 4:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |snake|snakex[2][5]        ;
-; 5:1                ; 32 bits   ; 96 LEs        ; 0 LEs                ; 96 LEs                 ; Yes        ; |snake|snakey[2][2]        ;
-; 6:1                ; 32 bits   ; 128 LEs       ; 32 LEs               ; 96 LEs                 ; Yes        ; |snake|i[8]                ;
-; 4:1                ; 64 bits   ; 128 LEs       ; 0 LEs                ; 128 LEs                ; Yes        ; |snake|snakey[63][16]      ;
-; 4:1                ; 64 bits   ; 128 LEs       ; 0 LEs                ; 128 LEs                ; Yes        ; |snake|snakex[62][21]      ;
-; 4:1                ; 64 bits   ; 128 LEs       ; 0 LEs                ; 128 LEs                ; Yes        ; |snake|snakex[61][13]      ;
-; 4:1                ; 64 bits   ; 128 LEs       ; 0 LEs                ; 128 LEs                ; Yes        ; |snake|snakex[60][28]      ;
-; 4:1                ; 64 bits   ; 128 LEs       ; 0 LEs                ; 128 LEs                ; Yes        ; |snake|snakex[59][30]      ;
-; 4:1                ; 64 bits   ; 128 LEs       ; 0 LEs                ; 128 LEs                ; Yes        ; |snake|snakex[58][28]      ;
-; 4:1                ; 64 bits   ; 128 LEs       ; 0 LEs                ; 128 LEs                ; Yes        ; |snake|snakex[57][18]      ;
-; 4:1                ; 64 bits   ; 128 LEs       ; 0 LEs                ; 128 LEs                ; Yes        ; |snake|snakey[56][26]      ;
-; 4:1                ; 64 bits   ; 128 LEs       ; 0 LEs                ; 128 LEs                ; Yes        ; |snake|snakex[55][29]      ;
-; 4:1                ; 64 bits   ; 128 LEs       ; 0 LEs                ; 128 LEs                ; Yes        ; |snake|snakey[54][16]      ;
-; 4:1                ; 64 bits   ; 128 LEs       ; 0 LEs                ; 128 LEs                ; Yes        ; |snake|snakex[53][3]       ;
-; 4:1                ; 64 bits   ; 128 LEs       ; 0 LEs                ; 128 LEs                ; Yes        ; |snake|snakex[52][13]      ;
-; 4:1                ; 64 bits   ; 128 LEs       ; 0 LEs                ; 128 LEs                ; Yes        ; |snake|snakey[51][14]      ;
-; 4:1                ; 64 bits   ; 128 LEs       ; 0 LEs                ; 128 LEs                ; Yes        ; |snake|snakey[50][2]       ;
-; 4:1                ; 64 bits   ; 128 LEs       ; 0 LEs                ; 128 LEs                ; Yes        ; |snake|snakey[49][26]      ;
-; 4:1                ; 64 bits   ; 128 LEs       ; 0 LEs                ; 128 LEs                ; Yes        ; |snake|snakey[48][7]       ;
-; 4:1                ; 64 bits   ; 128 LEs       ; 0 LEs                ; 128 LEs                ; Yes        ; |snake|snakex[47][7]       ;
-; 4:1                ; 64 bits   ; 128 LEs       ; 0 LEs                ; 128 LEs                ; Yes        ; |snake|snakey[46][17]      ;
-; 4:1                ; 64 bits   ; 128 LEs       ; 0 LEs                ; 128 LEs                ; Yes        ; |snake|snakey[45][23]      ;
-; 4:1                ; 64 bits   ; 128 LEs       ; 0 LEs                ; 128 LEs                ; Yes        ; |snake|snakex[44][18]      ;
-; 4:1                ; 64 bits   ; 128 LEs       ; 0 LEs                ; 128 LEs                ; Yes        ; |snake|snakex[43][4]       ;
-; 4:1                ; 64 bits   ; 128 LEs       ; 0 LEs                ; 128 LEs                ; Yes        ; |snake|snakex[42][2]       ;
-; 4:1                ; 64 bits   ; 128 LEs       ; 0 LEs                ; 128 LEs                ; Yes        ; |snake|snakex[41][30]      ;
-; 4:1                ; 64 bits   ; 128 LEs       ; 0 LEs                ; 128 LEs                ; Yes        ; |snake|snakex[40][23]      ;
-; 4:1                ; 64 bits   ; 128 LEs       ; 0 LEs                ; 128 LEs                ; Yes        ; |snake|snakex[39][24]      ;
-; 4:1                ; 64 bits   ; 128 LEs       ; 0 LEs                ; 128 LEs                ; Yes        ; |snake|snakex[38][6]       ;
-; 4:1                ; 64 bits   ; 128 LEs       ; 0 LEs                ; 128 LEs                ; Yes        ; |snake|snakex[37][29]      ;
-; 4:1                ; 64 bits   ; 128 LEs       ; 0 LEs                ; 128 LEs                ; Yes        ; |snake|snakex[36][18]      ;
-; 4:1                ; 64 bits   ; 128 LEs       ; 0 LEs                ; 128 LEs                ; Yes        ; |snake|snakex[35][31]      ;
-; 4:1                ; 64 bits   ; 128 LEs       ; 0 LEs                ; 128 LEs                ; Yes        ; |snake|snakey[34][26]      ;
-; 4:1                ; 64 bits   ; 128 LEs       ; 0 LEs                ; 128 LEs                ; Yes        ; |snake|snakex[33][31]      ;
-; 4:1                ; 64 bits   ; 128 LEs       ; 0 LEs                ; 128 LEs                ; Yes        ; |snake|snakex[32][30]      ;
-; 4:1                ; 64 bits   ; 128 LEs       ; 0 LEs                ; 128 LEs                ; Yes        ; |snake|snakey[31][18]      ;
-; 4:1                ; 64 bits   ; 128 LEs       ; 0 LEs                ; 128 LEs                ; Yes        ; |snake|snakey[30][6]       ;
-; 4:1                ; 64 bits   ; 128 LEs       ; 0 LEs                ; 128 LEs                ; Yes        ; |snake|snakey[29][10]      ;
-; 4:1                ; 64 bits   ; 128 LEs       ; 0 LEs                ; 128 LEs                ; Yes        ; |snake|snakex[28][25]      ;
-; 4:1                ; 64 bits   ; 128 LEs       ; 0 LEs                ; 128 LEs                ; Yes        ; |snake|snakex[27][16]      ;
-; 4:1                ; 64 bits   ; 128 LEs       ; 0 LEs                ; 128 LEs                ; Yes        ; |snake|snakex[26][26]      ;
-; 4:1                ; 64 bits   ; 128 LEs       ; 0 LEs                ; 128 LEs                ; Yes        ; |snake|snakey[25][25]      ;
-; 4:1                ; 64 bits   ; 128 LEs       ; 0 LEs                ; 128 LEs                ; Yes        ; |snake|snakey[24][25]      ;
-; 4:1                ; 64 bits   ; 128 LEs       ; 0 LEs                ; 128 LEs                ; Yes        ; |snake|snakey[23][25]      ;
-; 4:1                ; 64 bits   ; 128 LEs       ; 0 LEs                ; 128 LEs                ; Yes        ; |snake|snakey[22][8]       ;
-; 4:1                ; 64 bits   ; 128 LEs       ; 0 LEs                ; 128 LEs                ; Yes        ; |snake|snakey[21][13]      ;
-; 4:1                ; 64 bits   ; 128 LEs       ; 0 LEs                ; 128 LEs                ; Yes        ; |snake|snakey[20][14]      ;
-; 4:1                ; 64 bits   ; 128 LEs       ; 0 LEs                ; 128 LEs                ; Yes        ; |snake|snakex[19][21]      ;
-; 4:1                ; 64 bits   ; 128 LEs       ; 0 LEs                ; 128 LEs                ; Yes        ; |snake|snakex[18][25]      ;
-; 4:1                ; 64 bits   ; 128 LEs       ; 0 LEs                ; 128 LEs                ; Yes        ; |snake|snakex[17][5]       ;
-; 4:1                ; 64 bits   ; 128 LEs       ; 0 LEs                ; 128 LEs                ; Yes        ; |snake|snakex[16][5]       ;
-; 4:1                ; 64 bits   ; 128 LEs       ; 0 LEs                ; 128 LEs                ; Yes        ; |snake|snakex[15][7]       ;
-; 4:1                ; 64 bits   ; 128 LEs       ; 0 LEs                ; 128 LEs                ; Yes        ; |snake|snakey[14][2]       ;
-; 4:1                ; 64 bits   ; 128 LEs       ; 0 LEs                ; 128 LEs                ; Yes        ; |snake|snakey[13][26]      ;
-; 4:1                ; 64 bits   ; 128 LEs       ; 0 LEs                ; 128 LEs                ; Yes        ; |snake|snakex[12][14]      ;
-; 4:1                ; 64 bits   ; 128 LEs       ; 0 LEs                ; 128 LEs                ; Yes        ; |snake|snakex[11][4]       ;
-; 4:1                ; 64 bits   ; 128 LEs       ; 0 LEs                ; 128 LEs                ; Yes        ; |snake|snakey[10][17]      ;
-; 4:1                ; 64 bits   ; 128 LEs       ; 0 LEs                ; 128 LEs                ; Yes        ; |snake|snakex[9][23]       ;
-; 4:1                ; 64 bits   ; 128 LEs       ; 0 LEs                ; 128 LEs                ; Yes        ; |snake|snakex[8][11]       ;
-; 4:1                ; 64 bits   ; 128 LEs       ; 0 LEs                ; 128 LEs                ; Yes        ; |snake|snakey[7][21]       ;
-; 4:1                ; 64 bits   ; 128 LEs       ; 0 LEs                ; 128 LEs                ; Yes        ; |snake|snakex[6][5]        ;
-; 4:1                ; 64 bits   ; 128 LEs       ; 0 LEs                ; 128 LEs                ; Yes        ; |snake|snakex[5][20]       ;
-; 4:1                ; 64 bits   ; 128 LEs       ; 0 LEs                ; 128 LEs                ; Yes        ; |snake|snakey[4][25]       ;
-; 4:1                ; 64 bits   ; 128 LEs       ; 0 LEs                ; 128 LEs                ; Yes        ; |snake|snakex[3][25]       ;
-; 4:1                ; 32 bits   ; 64 LEs        ; 0 LEs                ; 64 LEs                 ; Yes        ; |snake|snakey[1][8]        ;
-; 4:1                ; 32 bits   ; 64 LEs        ; 0 LEs                ; 64 LEs                 ; Yes        ; |snake|snakey[0][8]        ;
-; 4:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |snake|index[3]            ;
-; 5:1                ; 32 bits   ; 96 LEs        ; 32 LEs               ; 64 LEs                 ; Yes        ; |snake|snakex[1][21]       ;
-; 5:1                ; 32 bits   ; 96 LEs        ; 32 LEs               ; 64 LEs                 ; Yes        ; |snake|snakex[0][24]       ;
-; 8:1                ; 7 bits    ; 35 LEs        ; 35 LEs               ; 0 LEs                  ; Yes        ; |snake|data_g[0]~reg0      ;
+; 4:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |snake|snakex[3][28]       ;
+; 6:1                ; 32 bits   ; 128 LEs       ; 32 LEs               ; 96 LEs                 ; Yes        ; |snake|snakey[3][29]       ;
+; 6:1                ; 32 bits   ; 128 LEs       ; 32 LEs               ; 96 LEs                 ; Yes        ; |snake|index[5]            ;
+; 4:1                ; 30 bits   ; 60 LEs        ; 30 LEs               ; 30 LEs                 ; Yes        ; |snake|i[18]               ;
+; 4:1                ; 64 bits   ; 128 LEs       ; 0 LEs                ; 128 LEs                ; Yes        ; |snake|snakey[64][19]      ;
+; 4:1                ; 64 bits   ; 128 LEs       ; 0 LEs                ; 128 LEs                ; Yes        ; |snake|snakey[63][3]       ;
+; 4:1                ; 64 bits   ; 128 LEs       ; 0 LEs                ; 128 LEs                ; Yes        ; |snake|snakey[62][3]       ;
+; 4:1                ; 64 bits   ; 128 LEs       ; 0 LEs                ; 128 LEs                ; Yes        ; |snake|snakex[61][30]      ;
+; 4:1                ; 64 bits   ; 128 LEs       ; 0 LEs                ; 128 LEs                ; Yes        ; |snake|snakex[60][16]      ;
+; 4:1                ; 64 bits   ; 128 LEs       ; 0 LEs                ; 128 LEs                ; Yes        ; |snake|snakex[59][5]       ;
+; 4:1                ; 64 bits   ; 128 LEs       ; 0 LEs                ; 128 LEs                ; Yes        ; |snake|snakey[58][23]      ;
+; 4:1                ; 64 bits   ; 128 LEs       ; 0 LEs                ; 128 LEs                ; Yes        ; |snake|snakex[57][27]      ;
+; 4:1                ; 64 bits   ; 128 LEs       ; 0 LEs                ; 128 LEs                ; Yes        ; |snake|snakey[56][29]      ;
+; 4:1                ; 64 bits   ; 128 LEs       ; 0 LEs                ; 128 LEs                ; Yes        ; |snake|snakey[55][29]      ;
+; 4:1                ; 64 bits   ; 128 LEs       ; 0 LEs                ; 128 LEs                ; Yes        ; |snake|snakey[54][29]      ;
+; 4:1                ; 64 bits   ; 128 LEs       ; 0 LEs                ; 128 LEs                ; Yes        ; |snake|snakey[53][29]      ;
+; 4:1                ; 64 bits   ; 128 LEs       ; 0 LEs                ; 128 LEs                ; Yes        ; |snake|snakey[52][29]      ;
+; 4:1                ; 64 bits   ; 128 LEs       ; 0 LEs                ; 128 LEs                ; Yes        ; |snake|snakey[51][29]      ;
+; 4:1                ; 64 bits   ; 128 LEs       ; 0 LEs                ; 128 LEs                ; Yes        ; |snake|snakey[50][29]      ;
+; 4:1                ; 64 bits   ; 128 LEs       ; 0 LEs                ; 128 LEs                ; Yes        ; |snake|snakey[49][5]       ;
+; 4:1                ; 64 bits   ; 128 LEs       ; 0 LEs                ; 128 LEs                ; Yes        ; |snake|snakey[48][12]      ;
+; 4:1                ; 64 bits   ; 128 LEs       ; 0 LEs                ; 128 LEs                ; Yes        ; |snake|snakey[47][8]       ;
+; 4:1                ; 64 bits   ; 128 LEs       ; 0 LEs                ; 128 LEs                ; Yes        ; |snake|snakey[46][27]      ;
+; 4:1                ; 64 bits   ; 128 LEs       ; 0 LEs                ; 128 LEs                ; Yes        ; |snake|snakey[45][21]      ;
+; 4:1                ; 64 bits   ; 128 LEs       ; 0 LEs                ; 128 LEs                ; Yes        ; |snake|snakex[44][5]       ;
+; 4:1                ; 64 bits   ; 128 LEs       ; 0 LEs                ; 128 LEs                ; Yes        ; |snake|snakey[43][4]       ;
+; 4:1                ; 64 bits   ; 128 LEs       ; 0 LEs                ; 128 LEs                ; Yes        ; |snake|snakex[42][13]      ;
+; 4:1                ; 64 bits   ; 128 LEs       ; 0 LEs                ; 128 LEs                ; Yes        ; |snake|snakey[41][26]      ;
+; 4:1                ; 64 bits   ; 128 LEs       ; 0 LEs                ; 128 LEs                ; Yes        ; |snake|snakex[40][28]      ;
+; 4:1                ; 64 bits   ; 128 LEs       ; 0 LEs                ; 128 LEs                ; Yes        ; |snake|snakex[39][21]      ;
+; 4:1                ; 64 bits   ; 128 LEs       ; 0 LEs                ; 128 LEs                ; Yes        ; |snake|snakey[38][4]       ;
+; 4:1                ; 64 bits   ; 128 LEs       ; 0 LEs                ; 128 LEs                ; Yes        ; |snake|snakey[37][0]       ;
+; 4:1                ; 64 bits   ; 128 LEs       ; 0 LEs                ; 128 LEs                ; Yes        ; |snake|snakey[36][5]       ;
+; 4:1                ; 64 bits   ; 128 LEs       ; 0 LEs                ; 128 LEs                ; Yes        ; |snake|snakex[35][4]       ;
+; 4:1                ; 64 bits   ; 128 LEs       ; 0 LEs                ; 128 LEs                ; Yes        ; |snake|snakey[34][25]      ;
+; 4:1                ; 64 bits   ; 128 LEs       ; 0 LEs                ; 128 LEs                ; Yes        ; |snake|snakey[33][11]      ;
+; 4:1                ; 64 bits   ; 128 LEs       ; 0 LEs                ; 128 LEs                ; Yes        ; |snake|snakey[32][24]      ;
+; 4:1                ; 64 bits   ; 128 LEs       ; 0 LEs                ; 128 LEs                ; Yes        ; |snake|snakey[31][15]      ;
+; 4:1                ; 64 bits   ; 128 LEs       ; 0 LEs                ; 128 LEs                ; Yes        ; |snake|snakex[30][27]      ;
+; 4:1                ; 64 bits   ; 128 LEs       ; 0 LEs                ; 128 LEs                ; Yes        ; |snake|snakex[29][22]      ;
+; 4:1                ; 64 bits   ; 128 LEs       ; 0 LEs                ; 128 LEs                ; Yes        ; |snake|snakex[28][17]      ;
+; 4:1                ; 64 bits   ; 128 LEs       ; 0 LEs                ; 128 LEs                ; Yes        ; |snake|snakex[27][13]      ;
+; 4:1                ; 64 bits   ; 128 LEs       ; 0 LEs                ; 128 LEs                ; Yes        ; |snake|snakey[26][20]      ;
+; 4:1                ; 64 bits   ; 128 LEs       ; 0 LEs                ; 128 LEs                ; Yes        ; |snake|snakex[25][20]      ;
+; 4:1                ; 64 bits   ; 128 LEs       ; 0 LEs                ; 128 LEs                ; Yes        ; |snake|snakex[24][20]      ;
+; 4:1                ; 64 bits   ; 128 LEs       ; 0 LEs                ; 128 LEs                ; Yes        ; |snake|snakex[23][25]      ;
+; 4:1                ; 64 bits   ; 128 LEs       ; 0 LEs                ; 128 LEs                ; Yes        ; |snake|snakex[22][19]      ;
+; 4:1                ; 64 bits   ; 128 LEs       ; 0 LEs                ; 128 LEs                ; Yes        ; |snake|snakex[21][19]      ;
+; 4:1                ; 64 bits   ; 128 LEs       ; 0 LEs                ; 128 LEs                ; Yes        ; |snake|snakex[20][19]      ;
+; 4:1                ; 64 bits   ; 128 LEs       ; 0 LEs                ; 128 LEs                ; Yes        ; |snake|snakex[19][19]      ;
+; 4:1                ; 64 bits   ; 128 LEs       ; 0 LEs                ; 128 LEs                ; Yes        ; |snake|snakey[18][19]      ;
+; 4:1                ; 64 bits   ; 128 LEs       ; 0 LEs                ; 128 LEs                ; Yes        ; |snake|snakex[17][6]       ;
+; 4:1                ; 64 bits   ; 128 LEs       ; 0 LEs                ; 128 LEs                ; Yes        ; |snake|snakex[16][27]      ;
+; 4:1                ; 64 bits   ; 128 LEs       ; 0 LEs                ; 128 LEs                ; Yes        ; |snake|snakex[15][23]      ;
+; 4:1                ; 64 bits   ; 128 LEs       ; 0 LEs                ; 128 LEs                ; Yes        ; |snake|snakey[14][25]      ;
+; 4:1                ; 64 bits   ; 128 LEs       ; 0 LEs                ; 128 LEs                ; Yes        ; |snake|snakex[13][3]       ;
+; 4:1                ; 64 bits   ; 128 LEs       ; 0 LEs                ; 128 LEs                ; Yes        ; |snake|snakey[12][27]      ;
+; 4:1                ; 64 bits   ; 128 LEs       ; 0 LEs                ; 128 LEs                ; Yes        ; |snake|snakey[11][6]       ;
+; 4:1                ; 64 bits   ; 128 LEs       ; 0 LEs                ; 128 LEs                ; Yes        ; |snake|snakex[10][16]      ;
+; 4:1                ; 64 bits   ; 128 LEs       ; 0 LEs                ; 128 LEs                ; Yes        ; |snake|snakey[9][27]       ;
+; 4:1                ; 64 bits   ; 128 LEs       ; 0 LEs                ; 128 LEs                ; Yes        ; |snake|snakex[8][14]       ;
+; 4:1                ; 64 bits   ; 128 LEs       ; 0 LEs                ; 128 LEs                ; Yes        ; |snake|snakex[7][3]        ;
+; 4:1                ; 64 bits   ; 128 LEs       ; 0 LEs                ; 128 LEs                ; Yes        ; |snake|snakey[6][9]        ;
+; 4:1                ; 64 bits   ; 128 LEs       ; 0 LEs                ; 128 LEs                ; Yes        ; |snake|snakex[5][7]        ;
+; 4:1                ; 64 bits   ; 128 LEs       ; 0 LEs                ; 128 LEs                ; Yes        ; |snake|snakey[4][30]       ;
+; 5:1                ; 64 bits   ; 192 LEs       ; 64 LEs               ; 128 LEs                ; Yes        ; |snake|snakey[2][7]        ;
+; 5:1                ; 64 bits   ; 192 LEs       ; 64 LEs               ; 128 LEs                ; Yes        ; |snake|snakey[1][11]       ;
+; 5:1                ; 64 bits   ; 192 LEs       ; 64 LEs               ; 128 LEs                ; Yes        ; |snake|snakex[0][24]       ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |snake|i[1]                ;
+; 8:1                ; 8 bits    ; 40 LEs        ; 40 LEs               ; 0 LEs                  ; Yes        ; |snake|data_g[0]~reg0      ;
 ; 5:1                ; 4 bits    ; 12 LEs        ; 12 LEs               ; 0 LEs                  ; No         ; |snake|moveway             ;
-; 128:1              ; 64 bits   ; 5440 LEs      ; 2752 LEs             ; 2688 LEs               ; No         ; |snake|Mux21               ;
-; 128:1              ; 64 bits   ; 5440 LEs      ; 2752 LEs             ; 2688 LEs               ; No         ; |snake|Mux164              ;
+; 256:1              ; 64 bits   ; 10880 LEs     ; 2816 LEs             ; 8064 LEs               ; No         ; |snake|Mux69               ;
+; 256:1              ; 64 bits   ; 10880 LEs     ; 2816 LEs             ; 8064 LEs               ; No         ; |snake|Mux164              ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------+
 
 
@@ -371,7 +370,7 @@ Encoding Type:  One-Hot
 +----------------+--------------+
 ; Partition Name ; Elapsed Time ;
 +----------------+--------------+
-; Top            ; 00:00:21     ;
+; Top            ; 00:00:26     ;
 +----------------+--------------+
 
 
@@ -381,21 +380,20 @@ Encoding Type:  One-Hot
 Info: *******************************************************************
 Info: Running Quartus II 64-Bit Analysis & Synthesis
     Info: Version 13.1.0 Build 162 10/23/2013 SJ Web Edition
-    Info: Processing started: Mon Jan 06 03:30:03 2020
+    Info: Processing started: Mon Jan 06 13:33:24 2020
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off snake -c snake
 Warning (20028): Parallel compilation is not licensed and has been disabled
 Info (12021): Found 3 design units, including 3 entities, in source file snake.v
     Info (12023): Found entity 1: snake
     Info (12023): Found entity 2: divfreq
     Info (12023): Found entity 3: divfreq_mv
-Warning (10236): Verilog HDL Implicit Net warning at snake.v(44): created implicit net for "clk_div"
-Warning (10236): Verilog HDL Implicit Net warning at snake.v(45): created implicit net for "clk_mv"
+Warning (10236): Verilog HDL Implicit Net warning at snake.v(49): created implicit net for "clk_div"
+Warning (10236): Verilog HDL Implicit Net warning at snake.v(50): created implicit net for "clk_mv"
 Info (12127): Elaborating entity "snake" for the top level hierarchy
 Warning (10036): Verilog HDL or VHDL warning at snake.v(8): object "j" assigned a value but never read
-Warning (10036): Verilog HDL or VHDL warning at snake.v(10): object "tailx" assigned a value but never read
-Warning (10036): Verilog HDL or VHDL warning at snake.v(10): object "taily" assigned a value but never read
 Warning (10855): Verilog HDL warning at snake.v(18): initial value for variable snakex should be constant
-Warning (10230): Verilog HDL assignment warning at snake.v(52): truncated value with size 32 to match size of target (3)
+Warning (10855): Verilog HDL warning at snake.v(18): initial value for variable snakey should be constant
+Warning (10230): Verilog HDL assignment warning at snake.v(57): truncated value with size 32 to match size of target (3)
 Info (12128): Elaborating entity "divfreq" for hierarchy "divfreq:F0"
 Info (12128): Elaborating entity "divfreq_mv" for hierarchy "divfreq_mv:F1"
 Warning (13024): Output pins are stuck at VCC or GND
@@ -420,14 +418,14 @@ Info (286030): Timing-Driven Synthesis is running
 Info (17049): 2 registers lost all their fanouts during netlist optimizations.
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Info (21057): Implemented 10160 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 10429 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 6 input pins
     Info (21059): Implemented 28 output pins
-    Info (21061): Implemented 10126 logic cells
-Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 26 warnings
-    Info: Peak virtual memory: 5127 megabytes
-    Info: Processing ended: Mon Jan 06 03:30:35 2020
-    Info: Elapsed time: 00:00:32
-    Info: Total CPU time (on all processors): 00:00:27
+    Info (21061): Implemented 10395 logic cells
+Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 25 warnings
+    Info: Peak virtual memory: 5434 megabytes
+    Info: Processing ended: Mon Jan 06 13:34:04 2020
+    Info: Elapsed time: 00:00:40
+    Info: Total CPU time (on all processors): 00:00:39
 
 

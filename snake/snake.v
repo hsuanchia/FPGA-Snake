@@ -10,8 +10,8 @@ module snake(
 	integer tailx,taily,cut;
 	reg [1:0] moveway;	
 	byte body;
-	int snakex [63:0];
-	int snakey [63:0];
+	int snakex [64:0];
+	int snakey [64:0];
 	integer index;
 	
 	initial
@@ -22,9 +22,14 @@ module snake(
 			tmpx = 0;
 			tmpy = 0;
 			index = 0;
-			snakex[2] = 2;
-			snakex[1] = 1;
+			snakex[3] = 2;
+			snakex[2] = 1;
+			snakex[1] = 0;
 			snakex[0] = 0;
+			snakey[3] = 0;
+			snakey[2] = 0;
+			snakey[1] = 0;
+			snakey[0] = 0;
 			moveway = 2'b11; //left = 00,down = 01,up = 10,right = 11
 			data_r = 8'b11111111;
 			data_g = 8'b11111111;
@@ -78,13 +83,18 @@ module snake(
 					tmpx = 0;
 					tmpy = 0;
 					index = 0;
-					snakex[2] = 2;
-					snakex[1] = 1;
+					snakex[3] = 2;
+					snakex[2] = 1;
+					snakex[1] = 0;
 					snakex[0] = 0;
+					snakey[3] = 0;
+					snakey[2] = 0;
+					snakey[1] = 0;
+					snakey[0] = 0;
 					moveway = 2'b11; //left = 00,down = 01,up = 10,right = 11
-					status[0] = 8'b01111111;
-					status[1] = 8'b01111111;
-					status[2] = 8'b01111111;
+					status[0] = 8'b11111110;
+					status[1] = 8'b11111110;
+					status[2] = 8'b11111110;
 					status[3] = 8'b11111111;
 					status[4] = 8'b11111111;
 					status[5] = 8'b11111111;
@@ -102,76 +112,76 @@ module snake(
 				else if(direction[2])
 						moveway = 2'b10;
 						
-				if(i < body) //refresh snake status
+				if(i <= body) //refresh snake status
 						begin
-							status[snakex[i]][snakey[i]] = 1'b0;
+							if(i == 0)
+								status[snakex[0]][snakex[0]] = 1'b1;
+							else
+								status[snakex[i]][snakey[i]] = 1'b0;
 							i++;
 						end
 						
-				if(moveway == 2'b11 && i >= body)
+				if(moveway == 2'b11 && i >= body +1)
 					begin
-						tailx = snakex[0];
-						taily = snakey[0];
-						tmpx = snakex[body-1];
-						tmpy = snakey[body-1];
+						tmpx = snakex[body];
+						tmpy = snakey[body];
 						if(index < body)
 							begin
 								snakex[index] = snakex[index+1];
 								snakey[index] = snakey[index+1];
 								index++;
 							end
-						snakex[body-1] = tmpx + 1;
-						snakey[body-1] = tmpy;
-						i=0;
+						snakex[body] = tmpx + 1;
+						snakey[body] = tmpy;
+						if(index == body)
+							i=0;						
 					end
 
-				else if(moveway == 2'b00 && i >= body)
+				else if(moveway == 2'b00 && i >= body+1)
 					begin
-						tailx = snakex[0];
-						taily = snakey[0];
-						tmpx = snakex[body-1];
-						tmpy = snakey[body-1];
+						tmpx = snakex[body];
+						tmpy = snakey[body];
 						if(index < body)
 							begin
 								snakex[index] = snakex[index+1];
 								snakey[index] = snakey[index+1];
 								index++;
 							end
-						snakex[body-1] = tmpx - 1;
-						snakey[body-1] = tmpy;
-						i=0;
+						snakex[body] = tmpx - 1;
+						snakey[body] = tmpy;
+						if(index == body)
+							i=0;	
+						
 					end
-				else if(moveway == 2'b01 && i >= body)
+				else if(moveway == 2'b01 && i >= body+1)
 					begin
-						tailx = snakex[0];
-						taily = snakey[0];
-						tmpx = snakex[body-1];
-						tmpy = snakey[body-1];
+						tmpx = snakex[body];
+						tmpy = snakey[body];
 						if(index < body)
 							begin
 								snakex[index] = snakex[index+1];
 								snakey[index] = snakey[index+1];
 								index++;
 							end
-						snakex[body-1] = tmpx;
-						snakey[body-1] = tmpy - 1;
-						i=0;
+						snakex[body] = tmpx;
+						snakey[body] = tmpy + 1;
+						if(index == body)
+							i=0;	
 					end
-				else if(moveway == 2'b10 && i >= body)
+				else if(moveway == 2'b10 && i >= body+1)
 					begin
-						tailx = snakex[0];
-						taily = snakey[0];
-						tmpx = snakex[body-1];
-						tmpy = snakey[body-1];
+						tmpx = snakex[body];
+						tmpy = snakey[body];
 						if(index < body)
 							begin
 								snakex[index] = snakex[index+1];
 								snakey[index] = snakey[index+1];
 								index++;
 							end
-						snakex[body-1] = tmpx;
-						snakey[body-1] = tmpy + 1;
-						i=0;
+						snakex[body] = tmpx;
+						snakey[body] = tmpy - 1;
+						if(index == body)
+							i=0;	
 					end
 //					
 //					begin
@@ -205,27 +215,7 @@ module snake(
 //					status[5][5] = 1;
 ////						headx = headx + 1;
 ////						status[headx][heady] = 1'b1;
-////						status[tailx][taily] = 1'b0;
-//				end
-//				if(direction[0])
-//					moveway <= 2'b00;
-//				if(direction[1])
-//					moveway <= 2'b01;
-//				if(direction[2])
-//					moveway <= 2'b10;
-//					
-//				if(moveway == 2'b11)
-//					begin
-//						headx = headx + 1;
-//						status[headx][heady] = 1'b1;
-//						status[tailx][taily] = 1'b0;
-//					end
-//				else
-//					begin
-//						headx = headx - 1;
-//						status[headx][heady] = 1'b1;
-//						status[tailx][taily] = 1'b0;
-//					end			
+////						status[tailx][taily] = 1'b0;		
 			end		
 			
 			
@@ -257,7 +247,7 @@ module divfreq_mv(input clk, output reg clk_mv);
 	reg[35:0] count;
 	always@(posedge clk)
 		begin
-			if(count > 10000000)
+			if(count > 3500000)
 				begin
 					count <= 35'b0;
 					clk_mv <= ~clk_mv;
