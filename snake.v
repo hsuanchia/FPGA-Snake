@@ -4,11 +4,12 @@ module snake(
 	input [3:0] direction,
 	input clk,clear);
 	reg [7:0] status [7:0];
-	reg [5:0] i;
 	reg [7:0] apple [7:0];
+	integer tmp,i,j,start;
 	integer tmpx,tmpy;
+	integer tailx,taily,cut;
 	reg [1:0] moveway;	
-	bit [5:0] body;
+	byte body;
 	integer snakex [63:0];
 	integer snakey [63:0];
 	integer index;
@@ -20,6 +21,7 @@ module snake(
 		begin
 			body = 3;
 			i=0;
+			j=0;
 			tmpx = 0;
 			tmpy = 0;
 			index = 0;
@@ -66,6 +68,7 @@ module snake(
 				begin
 					body = 3;
 					i=0;
+					j=0;
 					tmpx = 0;
 					tmpy = 0;
 					index = 0;
@@ -114,7 +117,7 @@ module snake(
 					if(moveway == 2'b11) // right
 						begin
 							status[snakex[0]][snakey[0]] = 1'b1;
-							for(i=0; i+1 < body;i++)
+							for(i=0;i<2;i++)
 								begin
 									snakex[i] = snakex[i+1];
 									snakey[i] = snakey[i+1];
@@ -124,7 +127,7 @@ module snake(
 					else if(moveway == 2'b00) // left
 						begin
 							status[snakex[0]][snakey[0]] = 1'b1;
-							for(i=0;i+1 < body;i++)
+							for(i=0;i<2;i++)
 								begin
 									snakex[i] = snakex[i+1];
 									snakey[i] = snakey[i+1];
@@ -134,7 +137,7 @@ module snake(
 					else if(moveway == 2'b01) // down
 						begin
 							status[snakex[0]][snakey[0]] = 1'b1;
-							for(i=0;i+1 < body;i++)
+							for(i=0;i<2;i++)
 								begin
 									snakex[i] = snakex[i+1];
 									snakey[i] = snakey[i+1];
@@ -144,7 +147,7 @@ module snake(
 					else if(moveway == 2'b10) // up
 						begin
 							status[snakex[0]][snakey[0]] = 1'b1;
-							for(i=0;i+1 < body;i++)
+							for(i=0;i<2;i++)
 								begin
 									snakex[i] = snakex[i+1];
 									snakey[i] = snakey[i+1];
