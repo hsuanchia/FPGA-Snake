@@ -19,13 +19,18 @@ module snake(
 	reg [35:0] speed;
 	initial
 		begin
+
 			body <= 2'b11;
 			i <= 1'b0;
 			score <= 1'b0;
 			speed <= 8'b11111111;
+
+
+
 			snakex[2] = 2;
 			snakex[1] = 1;
 			snakex[0] = 0;
+			snakey[3] = 0;
 			snakey[2] = 0;
 			snakey[1] = 0;
 			snakey[0] = 0;
@@ -64,13 +69,17 @@ module snake(
 		begin
 			if(clear == 1)
 				begin
+
 					body <= 2'b11;
 					i <= 1'b0;
 					score <= 1'b0;
 					speed = 100000000;
+
+
 					snakex[2] = 2;
 					snakex[1] = 1;
 					snakex[0] = 0;
+					snakey[3] = 0;
 					snakey[2] = 0;
 					snakey[1] = 0;
 					snakey[0] = 0;
@@ -189,7 +198,24 @@ module snake(
 							snakey[body-1] = snakey[body-1] - 1;		
 						end
 					status[snakex[body-1]][snakey[body-1]] = 1'b0;
+
 					
+
+					for(i=0;i<2;i++)
+						begin
+							if (snake[1] == snake[i-1])
+								begin
+									status[0] = 8'b00000000;
+									status[1] = 8'b00000000;
+									status[2] = 8'b00000000;
+									status[3] = 8'b00000000;
+									status[4] = 8'b00000000;
+									status[5] = 8'b00000000;
+									status[6] = 8'b00000000;
+									status[7] = 8'b00000000;
+								end		
+						end
+
 					if(snakex[body-1] < 0 || snakex[body-1] > 7 || snakey[body-1] < 0 || snakey[body-1] > 7)
 						begin
 							status[0] = 8'b00000000;
