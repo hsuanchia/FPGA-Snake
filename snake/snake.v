@@ -4,6 +4,7 @@ module snake(
 	input [3:0] direction,
 	input clk,clear);
 	reg [7:0] status [7:0];
+	reg [7:0] apple [7:0];
 	integer tmp,i,j,start;
 	integer tmpx,tmpy;
 	integer tailx,taily,cut;
@@ -12,6 +13,9 @@ module snake(
 	integer snakex [63:0];
 	integer snakey [63:0];
 	integer index;
+	integer applex,appley;
+	integer randomseedx = 1;
+	integer randomseedy = 1;
 	
 	initial
 		begin
@@ -55,7 +59,7 @@ module snake(
 			comm = {1'b1,cnt};
  			
 			data_g = status[cnt];
-			
+			data_r = apple[cnt];
 		end
 
 	always@(posedge clk_mv)
@@ -83,6 +87,21 @@ module snake(
 					status[5] = 8'b11111111;
 					status[6] = 8'b11111111;
 					status[7] = 8'b11111111;
+					apple[0] = 8'b11111111;
+					apple[1] = 8'b11111111;
+					apple[2] = 8'b11111111;
+					apple[3] = 8'b11111111;
+					apple[4] = 8'b11111111;
+					apple[5] = 8'b11111111;
+					apple[6] = 8'b11111111;
+					apple[7] = 8'b11111111;
+					// spawn random apple positions 
+					apple[applex][appley] = 1'b1;	
+					randomseedx = (randomseedx * 900123701) + 107321009;
+					randomseedy = (randomseedy * 300123701) + 107321003;
+					applex = randomseedx % 8;
+					appley = randomseedy % 8;
+					apple[applex][appley] = 1'b0;
 				end
 			else
 				begin		
