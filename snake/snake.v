@@ -4,28 +4,35 @@ module snake(
 	input [3:0] direction,
 	output a, b, c, d, e, f, g, COM3, COM4,
 	input clk,clear);
+	
 	reg [7:0] status [7:0];
 	reg [5:0] i;
 	reg [7:0] apple [7:0];
-	integer tmpx,tmpy;
 	reg [1:0] moveway;	
-	bit [5:0] body;
+	reg [5:0] body;
 	integer snakex [63:0];
 	integer snakey [63:0];
-	integer index;
-	integer applex,appley;
+	integer applex;
+	integer appley;
 	integer randomseedx = 1;
 	integer randomseedy = 1;
+
 	reg [3:0] A_count;
 	
+
+	reg [3:0] score;
+	reg [35:0] speed;
+
 	initial
 		begin
-			body = 4;
-			i=0;
-			tmpx = 0;
-			tmpy = 0;
-			index = 0;
-			snakex[3] = 3;
+
+			body <= 2'b11;
+			i <= 1'b0;
+			score <= 1'b0;
+			speed <= 8'b11111111;
+
+
+
 			snakex[2] = 2;
 			snakex[1] = 1;
 			snakex[0] = 0;
@@ -50,16 +57,14 @@ module snake(
 		end
 			
 	bit [2:0] cnt;
-	reg count;
+
 	divfreq F0(clk,clk_div);
-	divfreq_mv F1(clk, clk_mv);
-	BCD2Seg bcd(A_count[3], A_count[2], A_count[1], A_count[0], clk_mv, a, b, c, d, e, f, g, COM3, COM4);
+
+	BCD2Seg bcd(score[3], score[2], score[1], score[0], clk_mv, a, b, c, d, e, f, g, COM3, COM4);
 	
-	always@(posedge clk_mv)
-		if(A_count >= 4'b1111) 
-			A_count <= 4'b0000;
-		else 
-			A_count <= A_count + 1'b1;
+
+
+	divfreq_mv F1(clk,speed, clk_mv);
 	
 	always@(posedge clk_div) // Frame per second refresh
 		begin
@@ -79,12 +84,13 @@ module snake(
 			
 			if(clear == 1)
 				begin
-					body = 4;
-					i=0;
-					tmpx = 0;
-					tmpy = 0;
-					index = 0;
-					snakex[3] = 3;
+
+					body <= 2'b11;
+					i <= 1'b0;
+					score <= 1'b0;
+					speed = 100000000;
+
+
 					snakex[2] = 2;
 					snakex[1] = 1;
 					snakex[0] = 0;
@@ -111,17 +117,55 @@ module snake(
 					apple[7] = 8'b11111111;
 					// spawn random apple positions 
 					apple[applex][appley] = 1'b1;	
-					randomseedx = (randomseedx * 900123701) + 107321009;
-					randomseedy = (randomseedy * 300123701) + 107321003;
+					randomseedx = ((5*randomseedx) +107321003) % 17;
+					randomseedy = ((3*randomseedy) +107321009) % 13;
 					applex = randomseedx % 8;
 					appley = randomseedy % 8;
 					apple[applex][appley] = 1'b0;
 				end
 			else
-				begin
-					
-					
-					if(direction[3] && moveway != 2'b00)
+
+				begin		
+					if(snakex[body-1] == applex && snakey[body - 1] == appley)
+						begin
+							apple[applex][appley] = 1'b1;	// regenerate apple when get point
+							randomseedx = ((5*randomseedx) +3) % 16;
+							randomseedy = (randomseedy * 107321009) %13;
+							applex = randomseedx % 8;
+							appley = randomseedy % 8;
+							apple[applex][appley] = 1'b0;
+							score <= score + 1'b1;
+//							body <= body + 1'b1;
+//							for(i=0; i+1 < body;i++)
+//								begin
+//									snakex[i] = snakex[i+1];
+//									snakey[i] = snakey[i+1];
+//								end
+//							if(moveway == 2'b11)
+//								begin
+//									snakex[body-1] = snakex[body-2] + 1;
+//									snakey[body-1] = snakey[body-2];
+//								end
+//							else if(moveway == 2'b00)
+//								begin
+//									snakex[body-1] = snakex[body-2] - 1;
+//									snakey[body-1] = snakey[body-2];
+//								end
+//							else if(moveway == 2'b01)
+//								begin
+//									snakex[body-1] = snakex[body-2];
+//									snakey[body-1] = snakey[body-2] + 1;
+//								end
+//							else if(moveway == 2'b10)
+//								begin
+//									snakex[body-1] = snakex[body-2];
+//									snakey[body-1] = snakey[body-2] - 1;
+//								end
+						end
+					if(score % 5 == 0)
+						speed <= speed / 2'b10;
+
+					if(direction[3] && moveway != 2'b00) // store position
 						moveway = 2'b11;
 					else if(direction[0] && moveway != 2'b11)
 							moveway = 2'b00;
@@ -173,7 +217,10 @@ module snake(
 							snakey[body-1] = snakey[body-1] - 1;		
 						end
 					status[snakex[body-1]][snakey[body-1]] = 1'b0;
-					for(i=0;i<2;i++)
+
+					
+
+					for(i=0;i<2;i++) // body collision game over
 						begin
 							if (snake[1] == snake[i-1])
 								begin
@@ -187,6 +234,8 @@ module snake(
 									status[7] = 8'b00000000;
 								end		
 						end
+
+					// border collision game over
 					if(snakex[body-1] < 0 || snakex[body-1] > 7 || snakey[body-1] < 0 || snakey[body-1] > 7)
 						begin
 							status[0] = 8'b00000000;
@@ -222,7 +271,7 @@ module divfreq(input clk, output reg clk_div);
 		end
 endmodule
 
-module divfreq_mv(input clk, output reg clk_mv);
+module divfreq_mv(input clk,input reg speed,output reg clk_mv);
 	reg[35:0] count;
 	always@(posedge clk)
 		begin
@@ -246,38 +295,42 @@ module BCD2Seg(
 	reg cnt;
 
 	always @({A, B, C, D})
-	case ({A, B, C, D})
-		4'b0000: {a, b, c, d, e, f, g}= 7'b0000001;
-		4'b0001: {a, b, c, d, e, f, g}= 7'b1001111;
-		4'b0010: {a, b, c, d, e, f, g}= 7'b0010010;
-		4'b0011: {a, b, c, d, e, f, g}= 7'b0000110;
-		4'b0100: {a, b, c, d, e, f, g}= 7'b1001100;
-		4'b0101: {a, b, c, d, e, f, g}= 7'b0100100;
-		4'b0110: {a, b, c, d, e, f, g}= 7'b0100000;
-		4'b0111: {a, b, c, d, e, f, g}= 7'b0001111;
-		4'b1000: {a, b, c, d, e, f, g}= 7'b0000000;
-		4'b1001: {a, b, c, d, e, f, g}= 7'b0000100;
-		default: {a, b, c, d, e, f, g}= 7'b0000001;
-	endcase
-	
-	always @(CLK_div)
 		begin
-			cnt = ~cnt;
-			if (cnt == 1'b1)
-				begin
-					COM3 = 1'b0;
-					COM4 = 1'b0;
-
-				end
-			else
-				begin
-					COM3 = 1'b0;
-					COM4 = 1'b0;
-
-				end
-				
-
+			case ({A, B, C, D})
+				4'b0000: {a, b, c, d, e, f, g}= 7'b0000001;
+				4'b0001: {a, b, c, d, e, f, g}= 7'b1001111;
+				4'b0010: {a, b, c, d, e, f, g}= 7'b0010010;
+				4'b0011: {a, b, c, d, e, f, g}= 7'b0000110;
+				4'b0100: {a, b, c, d, e, f, g}= 7'b1001100;
+				4'b0101: {a, b, c, d, e, f, g}= 7'b0100100;
+				4'b0110: {a, b, c, d, e, f, g}= 7'b0100000;
+				4'b0111: {a, b, c, d, e, f, g}= 7'b0001111;
+				4'b1000: {a, b, c, d, e, f, g}= 7'b0000000;
+				4'b1001: {a, b, c, d, e, f, g}= 7'b0000100;
+				default: {a, b, c, d, e, f, g}= 7'b0000001;
+			endcase
+			COM3 = 1'b1;
+			COM4 = 1'b0;
 		end
+	
+//	always @(CLK_div)
+//		begin
+//			cnt = ~cnt;
+//			if (cnt == 1'b1)
+//				begin
+//					COM3 = 1'b0;
+//					COM4 = 1'b0;
+//
+//				end
+//			else
+//				begin
+//					COM3 = 1'b0;
+//					COM4 = 1'b0;
+//
+//				end
+//				
+//
+//		end
 		
 		
 endmodule

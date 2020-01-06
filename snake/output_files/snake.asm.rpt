@@ -1,5 +1,5 @@
 Assembler report for snake
-Mon Jan 06 22:25:38 2020
+Mon Jan 06 23:15:19 2020
 Quartus II 64-Bit Version 13.1.0 Build 162 10/23/2013 SJ Web Edition
 
 
@@ -10,7 +10,7 @@ Quartus II 64-Bit Version 13.1.0 Build 162 10/23/2013 SJ Web Edition
   2. Assembler Summary
   3. Assembler Settings
   4. Assembler Generated Files
-  5. Assembler Device Options: C:/Users/jiazheng/Sync/ncnu/class/DigitalLogic/FPGA-Snake/FPGA-Snake/snake/output_files/snake.sof
+  5. Assembler Device Options: D:/FPGA-final/repos/snake/output_files/snake.sof
   6. Assembler Messages
 
 
@@ -37,7 +37,7 @@ applicable agreement for further details.
 +---------------------------------------------------------------+
 ; Assembler Summary                                             ;
 +-----------------------+---------------------------------------+
-; Assembler Status      ; Successful - Mon Jan 06 22:25:38 2020 ;
+; Assembler Status      ; Successful - Mon Jan 06 23:15:19 2020 ;
 ; Revision Name         ; snake                                 ;
 ; Top-level Entity Name ; snake                                 ;
 ; Family                ; Cyclone III                           ;
@@ -77,24 +77,24 @@ applicable agreement for further details.
 +-----------------------------------------------------------------------------+----------+---------------+
 
 
-+---------------------------------------------------------------------------------------------------+
-; Assembler Generated Files                                                                         ;
-+---------------------------------------------------------------------------------------------------+
-; File Name                                                                                         ;
-+---------------------------------------------------------------------------------------------------+
-; C:/Users/jiazheng/Sync/ncnu/class/DigitalLogic/FPGA-Snake/FPGA-Snake/snake/output_files/snake.sof ;
-+---------------------------------------------------------------------------------------------------+
++--------------------------------------------------+
+; Assembler Generated Files                        ;
++--------------------------------------------------+
+; File Name                                        ;
++--------------------------------------------------+
+; D:/FPGA-final/repos/snake/output_files/snake.sof ;
++--------------------------------------------------+
 
 
-+-----------------------------------------------------------------------------------------------------------------------------+
-; Assembler Device Options: C:/Users/jiazheng/Sync/ncnu/class/DigitalLogic/FPGA-Snake/FPGA-Snake/snake/output_files/snake.sof ;
-+----------------+------------------------------------------------------------------------------------------------------------+
-; Option         ; Setting                                                                                                    ;
-+----------------+------------------------------------------------------------------------------------------------------------+
-; Device         ; EP3C10E144C8                                                                                               ;
-; JTAG usercode  ; 0x0012E396                                                                                                 ;
-; Checksum       ; 0x0012E396                                                                                                 ;
-+----------------+------------------------------------------------------------------------------------------------------------+
++----------------------------------------------------------------------------+
+; Assembler Device Options: D:/FPGA-final/repos/snake/output_files/snake.sof ;
++----------------+-----------------------------------------------------------+
+; Option         ; Setting                                                   ;
++----------------+-----------------------------------------------------------+
+; Device         ; EP3C10E144C8                                              ;
+; JTAG usercode  ; 0x00205094                                                ;
+; Checksum       ; 0x00205094                                                ;
++----------------+-----------------------------------------------------------+
 
 
 +--------------------+
@@ -103,14 +103,14 @@ applicable agreement for further details.
 Info: *******************************************************************
 Info: Running Quartus II 64-Bit Assembler
     Info: Version 13.1.0 Build 162 10/23/2013 SJ Web Edition
-    Info: Processing started: Mon Jan 06 22:25:36 2020
+    Info: Processing started: Mon Jan 06 23:15:19 2020
 Info: Command: quartus_asm --read_settings_files=off --write_settings_files=off snake -c snake
 Info (115031): Writing out detailed assembly data for power analysis
 Info (115030): Assembler is generating device programming files
 Info: Quartus II 64-Bit Assembler was successful. 0 errors, 0 warnings
-    Info: Peak virtual memory: 4608 megabytes
-    Info: Processing ended: Mon Jan 06 22:25:38 2020
-    Info: Elapsed time: 00:00:02
-    Info: Total CPU time (on all processors): 00:00:02
+    Info: Peak virtual memory: 4592 megabytes
+    Info: Processing ended: Mon Jan 06 23:15:19 2020
+    Info: Elapsed time: 00:00:00
+    Info: Total CPU time (on all processors): 00:00:01
 
 
