@@ -103,13 +103,13 @@ module snake(
 				end
 			else
 			begin		
-				if(direction[3])
+				if(direction[3] && moveway != 2'b00)
 					moveway = 2'b11;
-				else if(direction[0])
+				else if(direction[0] && moveway != 2'b11)
 						moveway = 2'b00;
-				else if(direction[1])
+				else if(direction[1] && moveway != 2'b10)
 						moveway = 2'b01;
-				else if(direction[2])
+				else if(direction[2] && moveway != 2'b01)
 						moveway = 2'b10;
 						
 				if(i <= body) //refresh snake status
@@ -121,7 +121,7 @@ module snake(
 							i++;
 						end
 						
-				if(moveway == 2'b11 && i >= body +1)
+				if(moveway == 2'b11 && i >= body +1) // right
 					begin
 						tmpx = snakex[body];
 						tmpy = snakey[body];
@@ -131,13 +131,16 @@ module snake(
 								snakey[index] = snakey[index+1];
 								index++;
 							end
-						snakex[body] = tmpx + 1;
+						if (tmpx <= 7)
+							snakex[body] = tmpx + 1;
+						else
+							snakex[body] = tmpx;
 						snakey[body] = tmpy;
 						if(index == body)
 							i=0;						
 					end
 
-				else if(moveway == 2'b00 && i >= body+1)
+				else if(moveway == 2'b00 && i >= body+1) // left
 					begin
 						tmpx = snakex[body];
 						tmpy = snakey[body];
@@ -147,13 +150,17 @@ module snake(
 								snakey[index] = snakey[index+1];
 								index++;
 							end
-						snakex[body] = tmpx - 1;
+							
+						if (tmpx >= 0)
+							snakex[body] = tmpx - 1;
+						else
+							snakex[body] = tmpx;
 						snakey[body] = tmpy;
 						if(index == body)
 							i=0;	
 						
 					end
-				else if(moveway == 2'b01 && i >= body+1)
+				else if(moveway == 2'b01 && i >= body+1) // down
 					begin
 						tmpx = snakex[body];
 						tmpy = snakey[body];
@@ -164,11 +171,14 @@ module snake(
 								index++;
 							end
 						snakex[body] = tmpx;
-						snakey[body] = tmpy + 1;
+						if (tmpy >= 0)
+							snakey[body] = tmpy + 1;
+						else
+							snakey[body] = tmpy;
 						if(index == body)
 							i=0;	
 					end
-				else if(moveway == 2'b10 && i >= body+1)
+				else if(moveway == 2'b10 && i >= body+1) // up
 					begin
 						tmpx = snakex[body];
 						tmpy = snakey[body];
@@ -179,7 +189,10 @@ module snake(
 								index++;
 							end
 						snakex[body] = tmpx;
-						snakey[body] = tmpy - 1;
+						if (tmpy >= 0)
+							snakey[body] = tmpy - 1;
+						else
+							snakey[body] = tmpy;
 						if(index == body)
 							i=0;	
 					end
