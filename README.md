@@ -18,20 +18,19 @@
 ## 程式模組說明
 
 ### output
-[7:0] data_r, data_g, data_b ->接到 8x8 LED 矩陣  
-reg [3:0] comm ->接到 8x8 LED 矩陣的 S0~S2 和 EN  
-reg [6:0] d7_1 ->接到七段顯示器  
-reg [1:0] COMM_CLK ->接到七段顯示器的 COM3 和 COM4  
+- [7:0] data_r, data_g, data_b ->接到 8x8 LED 矩陣  
+- reg [3:0] comm ->接到 8x8 LED 矩陣的 S0~S2 和 EN  
+- reg [6:0] d7_1 ->接到七段顯示器  
+- reg [1:0] COMM_CLK ->接到七段顯示器的 COM3 和 COM4  
 ### input
-[3:0] direction ->接到 4 Bits Switch  
-clk,clear ->接到 DIP Switch  
+- [3:0] direction ->接到 4 Bits Switch  
+- clk,clear ->接到 DIP Switch
 
-*** 請加強說明程式邏輯
 ### module 說明
-module snake() -> 遊戲主邏輯
-module divfreq() -> 除頻器，用於製造視覺暫留
-module divfreq_mv() -> 除頻器，用於控制蛇移動速度
-module segment7() -> BCD 數字轉七段顯示器輸出
+- module snake() -> 遊戲主邏輯
+- module divfreq() -> 除頻器，用於製造視覺暫留
+- module divfreq_mv() -> 除頻器，用於控制蛇移動速度
+- module segment7() -> BCD 數字轉七段顯示器輸出
 
 ## 未來展望
    1. 如果蛇吃到蘋果，蛇長度加一，目前因記憶體限制無法實作。
@@ -39,4 +38,4 @@ module segment7() -> BCD 數字轉七段顯示器輸出
    
 ## 示範影片 Demo video
 [https://youtu.be/eTh6KHmho1Y](https://youtu.be/eTh6KHmho1Y)  
-[![影片縮圖 Video thumbnail](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png )](https://youtu.be/eTh6KHmho1Y)
+[![影片縮圖 Video thumbnail](demothumb.png )](https://youtu.be/eTh6KHmho1Y)
