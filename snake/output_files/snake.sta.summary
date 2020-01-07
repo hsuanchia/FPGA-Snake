@@ -2,63 +2,63 @@
 TimeQuest Timing Analyzer Summary
 ------------------------------------------------------------
 
-Type  : Slow 1200mV 85C Model Setup 'divfreq_mv:F1|clk_mv'
-Slack : -106.821
-TNS   : -10910.855
+Type  : Slow 1200mV 85C Model Setup 'divfreq_mv:DIV02|clk_mv'
+Slack : -114.846
+TNS   : -12433.623
 
 Type  : Slow 1200mV 85C Model Setup 'clk'
-Slack : -5.673
-TNS   : -286.425
+Slack : -6.071
+TNS   : -305.652
 
-Type  : Slow 1200mV 85C Model Setup 'divfreq:F0|clk_div'
-Slack : -2.369
-TNS   : -36.777
+Type  : Slow 1200mV 85C Model Setup 'divfreq:DIV01|clk_div'
+Slack : -3.135
+TNS   : -65.136
 
 Type  : Slow 1200mV 85C Model Hold 'clk'
-Slack : -0.035
-TNS   : -0.035
+Slack : -0.104
+TNS   : -0.107
 
-Type  : Slow 1200mV 85C Model Hold 'divfreq_mv:F1|clk_mv'
-Slack : 0.435
+Type  : Slow 1200mV 85C Model Hold 'divfreq_mv:DIV02|clk_mv'
+Slack : 0.432
 TNS   : 0.000
 
-Type  : Slow 1200mV 85C Model Hold 'divfreq:F0|clk_div'
-Slack : 0.453
+Type  : Slow 1200mV 85C Model Hold 'divfreq:DIV01|clk_div'
+Slack : 0.454
 TNS   : 0.000
 
 Type  : Slow 1200mV 85C Model Minimum Pulse Width 'clk'
 Slack : -3.000
 TNS   : -96.681
 
-Type  : Slow 1200mV 85C Model Minimum Pulse Width 'divfreq_mv:F1|clk_mv'
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'divfreq_mv:DIV02|clk_mv'
 Slack : -1.487
-TNS   : -507.067
+TNS   : -533.833
 
-Type  : Slow 1200mV 85C Model Minimum Pulse Width 'divfreq:F0|clk_div'
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'divfreq:DIV01|clk_div'
 Slack : -1.487
-TNS   : -32.714
+TNS   : -44.610
 
-Type  : Slow 1200mV 0C Model Setup 'divfreq_mv:F1|clk_mv'
-Slack : -98.022
-TNS   : -10030.856
+Type  : Slow 1200mV 0C Model Setup 'divfreq_mv:DIV02|clk_mv'
+Slack : -105.548
+TNS   : -11437.856
 
 Type  : Slow 1200mV 0C Model Setup 'clk'
-Slack : -5.363
-TNS   : -268.729
+Slack : -5.713
+TNS   : -286.371
 
-Type  : Slow 1200mV 0C Model Setup 'divfreq:F0|clk_div'
-Slack : -2.155
-TNS   : -32.848
+Type  : Slow 1200mV 0C Model Setup 'divfreq:DIV01|clk_div'
+Slack : -2.880
+TNS   : -59.959
 
 Type  : Slow 1200mV 0C Model Hold 'clk'
-Slack : -0.036
-TNS   : -0.036
+Slack : -0.095
+TNS   : -0.095
 
-Type  : Slow 1200mV 0C Model Hold 'divfreq_mv:F1|clk_mv'
-Slack : 0.384
+Type  : Slow 1200mV 0C Model Hold 'divfreq_mv:DIV02|clk_mv'
+Slack : 0.382
 TNS   : 0.000
 
-Type  : Slow 1200mV 0C Model Hold 'divfreq:F0|clk_div'
+Type  : Slow 1200mV 0C Model Hold 'divfreq:DIV01|clk_div'
 Slack : 0.402
 TNS   : 0.000
 
@@ -66,48 +66,48 @@ Type  : Slow 1200mV 0C Model Minimum Pulse Width 'clk'
 Slack : -3.000
 TNS   : -96.681
 
-Type  : Slow 1200mV 0C Model Minimum Pulse Width 'divfreq_mv:F1|clk_mv'
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'divfreq_mv:DIV02|clk_mv'
 Slack : -1.487
-TNS   : -507.067
+TNS   : -533.833
 
-Type  : Slow 1200mV 0C Model Minimum Pulse Width 'divfreq:F0|clk_div'
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'divfreq:DIV01|clk_div'
 Slack : -1.487
-TNS   : -33.001
+TNS   : -44.610
 
-Type  : Fast 1200mV 0C Model Setup 'divfreq_mv:F1|clk_mv'
-Slack : -45.099
-TNS   : -4515.510
+Type  : Fast 1200mV 0C Model Setup 'divfreq_mv:DIV02|clk_mv'
+Slack : -49.419
+TNS   : -5210.569
 
 Type  : Fast 1200mV 0C Model Setup 'clk'
-Slack : -1.814
-TNS   : -86.153
+Slack : -2.067
+TNS   : -94.476
 
-Type  : Fast 1200mV 0C Model Setup 'divfreq:F0|clk_div'
-Slack : -0.507
-TNS   : -5.585
+Type  : Fast 1200mV 0C Model Setup 'divfreq:DIV01|clk_div'
+Slack : -0.900
+TNS   : -13.824
 
 Type  : Fast 1200mV 0C Model Hold 'clk'
-Slack : -0.183
-TNS   : -0.280
+Slack : -0.190
+TNS   : -0.361
 
-Type  : Fast 1200mV 0C Model Hold 'divfreq_mv:F1|clk_mv'
-Slack : 0.179
+Type  : Fast 1200mV 0C Model Hold 'divfreq_mv:DIV02|clk_mv'
+Slack : 0.178
 TNS   : 0.000
 
-Type  : Fast 1200mV 0C Model Hold 'divfreq:F0|clk_div'
+Type  : Fast 1200mV 0C Model Hold 'divfreq:DIV01|clk_div'
 Slack : 0.187
 TNS   : 0.000
 
 Type  : Fast 1200mV 0C Model Minimum Pulse Width 'clk'
 Slack : -3.000
-TNS   : -70.632
+TNS   : -70.486
 
-Type  : Fast 1200mV 0C Model Minimum Pulse Width 'divfreq_mv:F1|clk_mv'
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'divfreq_mv:DIV02|clk_mv'
 Slack : -1.000
-TNS   : -341.000
+TNS   : -359.000
 
-Type  : Fast 1200mV 0C Model Minimum Pulse Width 'divfreq:F0|clk_div'
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'divfreq:DIV01|clk_div'
 Slack : -1.000
-TNS   : -22.000
+TNS   : -30.000
 
 ------------------------------------------------------------
