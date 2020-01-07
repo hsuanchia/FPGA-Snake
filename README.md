@@ -17,20 +17,26 @@
 
 ## 程式模組說明
 
-*** 請說明各 I/O 變數接到哪個 FPGA I/O 裝置，例如: button, button2 -> 接到 4-bit SW
 ### output
-[7:0] data_r, data_g, data_b ->接到 8x8 LED 矩陣
-reg [3:0] comm ->接到 8x8 LED 矩陣的 S0~S2 和 EN
-reg [6:0] d7_1 ->接到七段顯示器
-reg [1:0] COMM_CLK ->接到七段顯示器的 COM3 和 COM4
+[7:0] data_r, data_g, data_b ->接到 8x8 LED 矩陣  
+reg [3:0] comm ->接到 8x8 LED 矩陣的 S0~S2 和 EN  
+reg [6:0] d7_1 ->接到七段顯示器  
+reg [1:0] COMM_CLK ->接到七段顯示器的 COM3 和 COM4  
 ### input
-[3:0] direction ->接到 4 Bits Switch
-clk,clear ->接到 DIP Switch
+[3:0] direction ->接到 4 Bits Switch  
+clk,clear ->接到 DIP Switch  
+
+*** 請加強說明程式邏輯
+### module 說明
+module snake() -> 遊戲主邏輯
+module divfreq() -> 除頻器，用於製造視覺暫留
+module divfreq_mv() -> 除頻器，用於控制蛇移動速度
+module segment7() -> BCD 數字轉七段顯示器輸出
 
 ## 未來展望
    1. 如果蛇吃到蘋果，蛇長度加一，目前因記憶體限制無法實作。
-   2. 使用視覺暫留，使七段顯示器能顯示兩位數以上得分。
-   3. 蛇移動的速度隨著得分增加而加快。
+   2. 蛇移動的速度隨著得分增加而加快。
    
 ## 示範影片 Demo video
-(請將影片放到雲端空間)
+[https://youtu.be/eTh6KHmho1Y](https://youtu.be/eTh6KHmho1Y)  
+[![影片縮圖 Video thumbnail](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png )](https://youtu.be/eTh6KHmho1Y)
